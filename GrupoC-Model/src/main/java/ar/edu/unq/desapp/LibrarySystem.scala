@@ -22,4 +22,8 @@ class LibrarySystem {
 	def removeBook(isbn: String){
 	  
 	}
+	
+	def filterByIsbn(){
+	  
+	}
 }

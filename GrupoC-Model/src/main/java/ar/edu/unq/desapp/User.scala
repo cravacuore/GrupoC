@@ -1,11 +1,7 @@
 package ar.edu.unq.desapp
 
-class User {
-	val userName : String
-	var email : String
-	var password : String
-	
-	val loanManagement: LoanManagement
+class User(val username: String, var email: String, var password: String) {
+	val loanManagement: LoanManagement //when should this be assigned???
 	
 	def borrowBook(aBook: Book){
 	  
