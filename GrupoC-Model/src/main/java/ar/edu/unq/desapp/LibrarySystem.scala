@@ -1,10 +1,11 @@
 package ar.edu.unq.desapp
 
 class LibrarySystem {
-	var users: List[User]
+    var books: List[Book] = null
+	var users: List[User] = null
 	
 	def manualBookLoad(aBook: Book){
-	  
+      books.::(aBook)
 	}
 	
 	def automaticBookLoadByIsbn(isbn: String){
@@ -16,14 +17,14 @@ class LibrarySystem {
 	}
 	
 	def editBook(isbn: String){
-	  
+
 	}
 	
 	def removeBook(isbn: String){
-	  
+
 	}
 	
-	def filterByIsbn(){
-	  
+	def filterByIsbn(): List[Book] = {
+		null
 	}
 }
