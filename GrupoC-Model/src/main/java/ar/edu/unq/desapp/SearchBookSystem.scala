@@ -1,14 +1,15 @@
 package ar.edu.unq.desapp
 
 class SearchBookSystem {
-	var users: List[User] = null
+    val system: LibrarySystem = new LibrarySystem()
+	var users: List[User] = List()
 	
 	def top20borrowed: List[Book] = {
 	  null
 	}
 	
 	def lastBooksAdded: List[Book] ={
-	  null
+	  null//for(b <- system.books)
 	}
 	
 	def searchBook(aRequest: String): List[Book] = { 

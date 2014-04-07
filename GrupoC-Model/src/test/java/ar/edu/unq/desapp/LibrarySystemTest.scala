@@ -55,15 +55,15 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
 	      librarySystem manualBookLoad(bookC)
 	      
 	      then("the books should be loaded")
-	      val booksLoaded = librarySystem filterByIsbn
+	      val booksLoaded = librarySystem books
 	      
 	      booksLoaded should have size (3)
-	      booksLoaded should contain (fixture.isbnA)
-	      booksLoaded should contain (fixture.isbnB)
-	      booksLoaded should contain (fixture.isbnC)
+	      booksLoaded should contain (bookA)
+	      booksLoaded should contain (bookB)
+	      booksLoaded should contain (bookC)
 	    }
 	    
-	    it("should load automatically the books to the system"){
+	    ignore("should load automatically the books to the system"){
 	      val librarySystem = fixture.system
 	      
 	      given("the following data")

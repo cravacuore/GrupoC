@@ -4,13 +4,8 @@ import org.scalatest.FunSpec
 import org.specs2.mock.Mockito
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.GivenWhenThen
-//import ar.edu.unq.desapp._
 import java.awt.Image
 
-//import org.junit.runner.RunWith
-//import org.scalatest.junit.JUnitRunner
-//
-//@RunWith(classOf[JUnitRunner])
 class SearchBookSystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito{
 	
 	def fixture = new {
