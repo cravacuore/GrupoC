@@ -9,7 +9,7 @@ class SearchBookSystem {
 	}
 	
 	def lastBooksAdded: List[Book] ={
-	  null//for(b <- system.books)
+	  null
 	}
 	
 	def searchBook(aRequest: String): List[Book] = { 

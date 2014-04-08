@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp
 
 import java.awt.Image
-import org.joda.time.DateTime
+//import org.joda.time.DateTime
 
 class Book(val title: String, val isbn: String,
 			val editorial: String, var image: Image,

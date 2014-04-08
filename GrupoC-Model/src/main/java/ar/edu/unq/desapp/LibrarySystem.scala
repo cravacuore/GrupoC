@@ -14,11 +14,11 @@ class LibrarySystem {
     }
 	
 	def automaticBookLoadByIsbn(isbn: String){
-		//TODO
+		//TODO - implement using googleAPI
 	}
 	
 	def automaticBookLoadByTitle(title: String){
-		//TODO
+		//TODO - implement using googleAPI
 	}
 	
 	def removeBook(anIsbn: String){

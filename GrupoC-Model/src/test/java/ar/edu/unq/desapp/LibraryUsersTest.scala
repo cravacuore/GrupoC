@@ -19,7 +19,7 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     it("should add books to the system") {
       val librarian = fixture.librarian
 
-      given("the following two books")
+      given("following two books")
 
       val titleA = "Title"
       val isbnA = "123-749"
@@ -33,14 +33,13 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       val editorialB = "What's up?"
       val imageB = mock[Image]
       val descriptionB = "Yes, i haven't more imagination"
-      val authorsB = mock[Author] ::List() ::: authorsA
+      val authorsB = mock[Author] :: authorsA
 
       when("the librarian add the books to system")
-      librarian addBookToSystem(titleA, isbnA, editorialA, imageA, descriptionA, authorsA)
-      librarian addBookToSystem(titleA, isbnA, editorialA, imageA, descriptionA, authorsA)
+      librarian addBookToSystem(titleA, isbnA, editorialA, imageA, descriptionA, authorsA, 4)
       librarian addBookToSystem(titleB, isbnB, editorialB, imageB, descriptionB, authorsB)
 
-      then("the books should be inside the system")
+      then("the books should be inside to system")
       val booksToSystem : List[Book] = fixture.librarySystem.books
 
       booksToSystem should have size (2)
@@ -49,14 +48,14 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       booksToSystem(0) should have('editorial("Something"))
       booksToSystem(0) should have('description("Just to test it"))
       booksToSystem(0) should have('authors(authorsA))
-      booksToSystem(0) should be (2)
+      booksToSystem(0).amount should be (4)
 
       booksToSystem(1) should have('title("The True"))
       booksToSystem(1) should have('isbn("987-789"))
       booksToSystem(1) should have('editorial("What's up?"))
       booksToSystem(1) should have('description("Yes, i haven't more imagination"))
       booksToSystem(1) should have('authors(authorsB))
-      booksToSystem(1) should be (1)
+      booksToSystem(1).amount should be (1)
 
     }
 
