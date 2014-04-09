@@ -9,7 +9,7 @@ class User(val username: String, val email: String, val password: String) {
 
   def returnBook(aBook: Book): Unit = borrowedBooks = borrowedBooks filter (book => book.equals(aBook))
 
-  def commentBook(aBook: Book, aComment: String) = {
-    //TODO
+  def commentBook(aBook: Book, aComment: String) {
+    //TODO - implement
   }
 }
