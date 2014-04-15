@@ -3,8 +3,8 @@ package ar.edu.unq.desapp
 import java.util.ArrayList
 
 class LibrarySystem {
-  var books: List[Book] = List()
-  var users: List[User] = List()
+  var books: List[Book] = Nil
+  var users: List[User] = Nil
 
   def manualBookLoad(aBook: Book, amount: Int = 0) {
     books = aBook :: books
@@ -22,25 +22,24 @@ class LibrarySystem {
   }
 
   def removeBook(anIsbn: String) {
-    val book = getBookByIsbn(anIsbn)
-    books filter (b => b.equals(book.get))
+    this.getBookByIsbn(anIsbn) match {
+      case Some(book) => books = books filter (b => b.equals(book))
+      case None => Nil
+    }
   }
 
   def changeAmount(anIsbn: String, amount: Int) {
-    getBookByIsbn(anIsbn).get.amount += amount
+    getBookByIsbn(anIsbn).get.amount = amount
   }
 
   def containsBook(anIsbn: String): Boolean = {
-    val book = getBookByIsbn(anIsbn).get
-    books.contains(book)
+    getBookByIsbn(anIsbn) match {
+      case Some(book) => books.contains(book)
+      case None => false
+    }
   }
 
   def getBookByIsbn(anIsbn: String): Option[Book] = {
-    var result: List[Book] = books filter (b => (b.isbn == anIsbn))
-    if (result.isEmpty) {
-      None
-    } else {
-      Some(result.head)
-    }
+    books find (b => (b.isbn == anIsbn))
   }
 }

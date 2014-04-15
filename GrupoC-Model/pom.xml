@@ -60,6 +60,13 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
 		</dependency>
+		
+		<!-- Added for scala/eclipse understanding of JodaTime constructors -->
+		<dependency>
+			<groupId>org.joda</groupId>
+			<artifactId>joda-convert</artifactId>
+			<version>1.6</version>
+		</dependency>
 
 	</dependencies>
 

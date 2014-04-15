@@ -3,72 +3,62 @@ package ar.edu.unq.desapp
 import org.scalatest.FunSpec
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.GivenWhenThen
-import org.scalatest.mock.MockitoSugar
 import java.awt.Image
+import ar.edu.unq.desapp.builders.Builder
+import org.specs2.mock.Mockito
 
-class NotificationSystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with MockitoSugar {
-
-  def fixture = new {
-    val notificationSystem = new NotificationSystem()
-    val emailService = mock[EmailService]
-    val mockImage = mock[Image]
-    val userA = new User("userA", "userA@gmail.com", "124121")
-    val userB = new Librarian("librarian", "librarian@gmail.com", "12412412", mock[LibrarySystem])
-    val userC = new User("userC", "userC@gmail.com", "1124feqf")
-    val bookA = new Book("Alguien anda por ahi", "1819-7846", "Argentina", mockImage, "what?, it's a real book", mock[Author] :: List())
-    val bookB = mock[Book]
-  }
+class NotificationSystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito with Builder {
 
   describe("Notification System") {
-    it("must register notifications to the users") {
-      val notificationSystem = fixture.notificationSystem
+    it("should register notifications to the users") {
+      val notificationSystem = new NotificationSystem
 
-      given("following users and two books")
-      val clientA = fixture.userA
-      val clientB = fixture.userC
-      val clientC = fixture.userB
+      given("the following users and two books")
+      val userA = anUser.withName("Joseph").withEmail("joseph@email.com").build
+      val userB = anUser.withName("Pepito").withEmail("pepito1@email.com").build
+      val userC = aLibrarian.withName("Edurito").withEmail("edurito@email.com").build
 
-      val aBorrowedBookA = fixture.bookA
-      val aBorrowedBookB = fixture.bookB
+      val aBorrowedBookA = aBook.build
+      val aBorrowedBookB = aBook.build
 
       when("add to map")
-      notificationSystem.addObserver(clientA, aBorrowedBookA)
-      notificationSystem.addObserver(clientB, aBorrowedBookA)
-      notificationSystem.addObserver(clientC, aBorrowedBookB)
+      notificationSystem.addObserver(userA, aBorrowedBookA)
+      notificationSystem.addObserver(userB, aBorrowedBookA)
+      notificationSystem.addObserver(userC, aBorrowedBookB)
 
       then("should have added")
       val notifications = notificationSystem.users
 
       notifications should have size (2)
-      notifications should (contain key (aBorrowedBookA) and contain value (List(clientA, clientB)))
-      notifications should (contain key (aBorrowedBookB) and contain value (List(clientC)))
+      notifications should (contain key (aBorrowedBookA) and contain value (List(userB, userA)))
+      notifications should (contain key (aBorrowedBookB) and contain value (List(userC)))
     }
 
     it("must notify to all users that await your wished book") {
-      val notificationSystem = fixture.notificationSystem
-      val mailer = fixture.emailService
-      val clientA = fixture.userA
-      val clientB = fixture.userC
-      val aBorrowedBook = fixture.bookA
+      val notificationSystem = new NotificationSystem
+      notificationSystem.mailer = mock[EmailService]
+
+      val userA = anUser.build
+      val userB = anUser.build
+      val aBorrowedBook = aBook.build
 
       given("users added to be notified")
-      notificationSystem.addObserver(clientA, aBorrowedBook)
-      notificationSystem.addObserver(clientB, aBorrowedBook)
+      notificationSystem.addObserver(userA, aBorrowedBook)
+      notificationSystem.addObserver(userB, aBorrowedBook)
 
       when("notify users by borrowed book")
       notificationSystem.notifyAllUsers(aBorrowedBook)
 
       then("verify that the message was sent")
-      //TODO: problem with mockito!!!
-      //      verify(mailer).sendNotification(clientA, aBorrowedBook)
-      //      verify(mailer).sendNotification(clientB, aBorrowedBook)
+      there was one(notificationSystem.mailer).sendNotification(userA, aBorrowedBook)
+      there was one(notificationSystem.mailer).sendNotification(userB, aBorrowedBook)
 
       and("delete notifications")
       notificationSystem.users should not contain key(aBorrowedBook)
     }
 
     ignore("dashboard") {
-      val notificationSystem = fixture.notificationSystem
+      val notificationSystem = new NotificationSystem
 
     }
   }
