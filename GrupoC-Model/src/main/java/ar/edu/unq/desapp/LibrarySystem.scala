@@ -23,18 +23,20 @@ class LibrarySystem {
 
   def removeBook(anIsbn: String) {
     this.getBookByIsbn(anIsbn) match {
-      case Some(book) => books filter (b => b.equals(book))
+      case Some(book) => books = books filter (b => b.equals(book))
       case None => Nil
     }
   }
 
   def changeAmount(anIsbn: String, amount: Int) {
-    getBookByIsbn(anIsbn).get.amount += amount
+    getBookByIsbn(anIsbn).get.amount = amount
   }
 
   def containsBook(anIsbn: String): Boolean = {
-    val book = getBookByIsbn(anIsbn).get
-    books.contains(book)
+    getBookByIsbn(anIsbn) match {
+      case Some(book) => books.contains(book)
+      case None => false
+    }
   }
 
   def getBookByIsbn(anIsbn: String): Option[Book] = {
