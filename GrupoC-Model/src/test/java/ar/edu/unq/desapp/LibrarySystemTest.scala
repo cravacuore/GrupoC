@@ -1,13 +1,13 @@
 package ar.edu.unq.desapp
 
 import org.scalatest.FunSpec
-import org.scalatest.mock.MockitoSugar
+import org.specs2.mock.Mockito
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.GivenWhenThen
 import java.awt.Image
 import ar.edu.unq.desapp.builders.Builder
 
-class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with MockitoSugar with Builder{
+class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito with Builder{
 
   describe("Library System") {
     it("should load manually the books to the system") {
