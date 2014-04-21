@@ -11,7 +11,7 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
 
   describe("Library System") {
     it("should load manually the books to the system") {
-      val librarySystem = new LibrarySystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
 
       given("the following books")
       val bookA = aBook.build
@@ -33,8 +33,8 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
     }
 
     ignore("should load automatically the books to the system") {
-      val librarySystem = new LibrarySystem
-      val searcher = new SearchBookSystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val searcher = new SearchBookSystem(librarySystem)
 
       given("the following data")
       val isbn = "123-749"
@@ -56,25 +56,30 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
     }
 
     it("should remove a book from the system") {
-      val librarySystem = new LibrarySystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
 
       given("the following added books")
-      val bookA = aBook.withIsbn("Some-isbn").build
-      val bookB = aBook.build
+      val bookA = aBook.withIsbn("1234-isbn").build
+      val bookB = aBook.withIsbn("4363-isbn").build
+      val bookC = aBook.withIsbn("3241-isbn").build
       librarySystem.manualBookLoad(bookA)
       librarySystem.manualBookLoad(bookB)
+      librarySystem.manualBookLoad(bookC)
 
       when("removing the same book")
-      librarySystem.removeBook("Some-isbn")
+      librarySystem.removeBook("1234-isbn")
 
       then("the book should not be on the system")
-      librarySystem.books should have size (1)
-      librarySystem.books should not contain (bookA)
-      librarySystem.books should contain(bookB)
+      val books = librarySystem.books
+
+      books should have size (2)
+      books should not contain (bookA)
+      books should contain(bookB)
+      books should contain(bookC)
     }
 
     it("should be able to change an amount of a book") {
-      val librarySystem = new LibrarySystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
 
       given("the following added book")
       val bookA = aBook.withIsbn("Isbn-A").build
@@ -85,13 +90,13 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       librarySystem.changeAmount("Isbn-A", newAmount)
 
       then("the amount of the book should have changed")
-      librarySystem.books should contain (bookA)
+      librarySystem.books should contain(bookA)
       librarySystem.books should have size (1)
       librarySystem.books(0) should have('amount(newAmount))
     }
 
-    it("should be able to know if the list of books on the system contain a book"){
-      val librarySystem = new LibrarySystem
+    it("should be able to know if the list of books on the system contain a book") {
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
 
       given("the following book added to the system")
       val bookA = aBook.withIsbn("Isbn-lala").build
@@ -102,8 +107,8 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       assert(!librarySystem.containsBook("Isbn-false"))
     }
 
-    it("should be able to get a book by its isbn"){
-      val librarySystem = new LibrarySystem
+    it("should be able to get a book by its isbn") {
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
 
       given("the following added book on the system")
       val bookA = aBook.withIsbn("Lala-A").build
@@ -114,8 +119,8 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       val notObtainedBook = librarySystem.getBookByIsbn("False-isbn")
 
       then("the obtained book should be correct")
-      obtainedBook should be (Some(bookA))
-      notObtainedBook should be (None)
+      obtainedBook should be(Some(bookA))
+      notObtainedBook should be(None)
     }
   }
 }

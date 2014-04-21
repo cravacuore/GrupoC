@@ -12,7 +12,7 @@ class NotificationSystem {
     //TODO implement
   }
 
-  def notifyUserOfAvailableBook(aBook: Book) {
+  def notifyUserOfAvailableBook(aUser: User, aBook: Book) {
     //TODO we need one email service
     //mailer.sendNotification(user, aBorrowedBook)
   }

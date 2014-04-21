@@ -5,8 +5,9 @@ import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.ShouldMatchers
 import org.specs2.mock.Mockito
 import java.awt.Image
-import ar.edu.unq.desapp.builders.UserIdentity
+import ar.edu.unq.desapp.builders.UserBuilder
 import ar.edu.unq.desapp.builders.Builder
+import org.joda.time.DateTime
 
 class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito with Builder {
 
@@ -15,8 +16,6 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       val librarian = aLibrarian.build
 
       given("following two books")
-      //TODO - I think this books should be created
-      // with default constructor instead of a builder
       val bookA =
         aBook
           .withTitle("Title")
@@ -56,7 +55,6 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       booksToSystem(1) should have('description(bookA.description))
       booksToSystem(1) should have('authors(bookA.authors))
       booksToSystem(1).amount should be(1)
-
     }
 
     ignore("should modify a book to the system") {
@@ -85,63 +83,102 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       books should have('isbn(bookModified.isbn))
       books should have('editorial(bookModified.editorial))
       books should have('description(bookModified.description))
-
     }
 
     it("should delete a book") {
-      val librarian = aLibrarian.build
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val librarian =
+        aLibrarian
+          .withLibrarySystem(librarySystem).build
 
       given("following books")
-      val bookA = aBook.build
+      val bookA =
+        aBook
+          .withIsbn("1234-isbn")
+          .build
       val bookB =
         aBook
           .withTitle("Some title")
+          .withIsbn("bookB")
           .build
       val bookC =
         aBook
           .withTitle("FullMoon")
+          .withIsbn("bookC")
           .build
 
-      librarian addBookToSystem (bookA)
-      librarian addBookToSystem (bookB)
-      librarian addBookToSystem (bookC)
+      librarySystem.books = bookA :: bookB :: bookC :: Nil
 
       when("you want delete a book")
-      val bookToRemove = librarian.librarySystem.books(0)
-      librarian deleteBookFromTheSystem (bookToRemove)
+      val bookToRemove = librarySystem.books(0)
+      librarian deleteBookFromTheSystem (bookA)
 
       then("should have the books")
-      val books = librarian.librarySystem.books
+      val books = librarySystem.books
 
       books should have size (2)
       books(0) should have('title(bookB.title))
       books(1) should have('title(bookC.title))
     }
 
-    ignore("configure amount to allow loan") {
-      given("some users inside the system")
-      val librarySystem = new LibrarySystem
+    it("configure amount to allow loan") {
+      val loanConf = new LoanConfiguration
+      val loanManagement = new LoanManagement(mock[NotificationSystem], loanConf)
+      val librarySystem = new LibrarySystem(loanConf)
+      val librarian = aLibrarian.withLibrarySystem(librarySystem).build
+      val amountReserver = 5
+
+      given("some user and books inside the system")
+      val user = anUser.build
+      librarySystem.users = user :: Nil
+      librarySystem.books =
+        aBook.build :: aBook.build :: aBook.build :: aBook.build :: aBook.build :: Nil
+
+      when("set max reserves amount to 5 and two users reserve 5 books each")
+      librarian.configureMaxReservesAmount(amountReserver)
+      librarySystem.books foreach (book => loanManagement.reserveBook(user, book))
+
+      then("all users should have 5 books")
+      loanConf.amountAllowLoan should be(5)
+      loanManagement.reservedBooks(user) should have size (5)
+    }
+
+    it("configure max date to loan") {
+      val loanConf = new LoanConfiguration
+      val loanManagement = new LoanManagement(mock[NotificationSystem], loanConf)
+      val librarySystem = new LibrarySystem(loanConf)
       val librarian = aLibrarian.withLibrarySystem(librarySystem).build
 
-      val userA = anUser.withAmountAllowLoan(2).build
-      val userB = anUser.withAmountAllowLoan(4).build
-      val userC = aLibrarian.withAmountAllowLoan(3).build
-      librarySystem.users = userA :: userB :: userC :: librarian :: Nil
+      val user = anUser.build
+      val book = aBook.build
 
-      when("set max reserves amount to 5")
-      //XXX LibrarianBuilder isn't building a Librarian else a User
-// librarian.configureMaxReservesAmount(5)
+      given("an amount days to allow loan")
+      val amountDays = 6
+      val dateToday = new DateTime().plusDays(amountDays)
 
-      then("all users should have 5")
-      librarySystem.users foreach(user => user should be(5))
+      when("librarian configure max loan date")
+      librarian.configureMaxDaysOfLoan(amountDays)
+
+      then("if an user will reserve some book")
+      loanManagement.recordLoan(user, book)
+      val borrowedBook = loanManagement.borrowedBooks(0)
+
+      loanConf.maxDaysOfLoan should be(amountDays)
+      borrowedBook.refundDate.getDayOfYear() should be(dateToday.getDayOfYear())
     }
 
-    ignore("configure max date to loan") {
-      //TODO: configure max date to loan
-    }
+    it("register users") {
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val librarian = aLibrarian.withLibrarySystem(librarySystem).build
 
-    ignore("register users") {
-      //TODO: register users
+      when("librarian is going to register two users")
+      librarian.registerUser("Pep", "pep@gmail.com", "10iifoiwe", "User")
+      librarian.registerUser("Erudito", "erudito@gmail.com", "9130u019", "Librarian")
+
+      then("the library will register the users")
+      librarySystem.users should have size (2)
+      librarySystem.users(1) should have('username("Pep"))
+      librarySystem.users(0) should have('username("Erudito"))
     }
   }
 
@@ -173,7 +210,7 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     it("should be able to return a book") {
       val user = anUser.build
 
-      given(" the following books that user have loaned")
+      given("the following books that user have loaned")
       val bookA = aBook.build
       val bookB = aBook.build
       val bookC = aBook.build
@@ -186,11 +223,22 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
 
       then("must have only the books")
       user.borrowedBooks should have size (2)
-      user.borrowedBooks should contain((bookA :: bookC :: Nil))
+      user.borrowedBooks should contain(bookA)
+      user.borrowedBooks should contain(bookC)
     }
 
-    ignore("comment a book") {
-      //TODO: implement comment a book
+    it("comment a book") {
+      val user = anUser.build
+      val book = aBook.build
+
+      given("the following comment")
+      val commentA = "This is a comment, poor, but it is"
+
+      when("user comments the book")
+      user.commentBook(book, commentA)
+
+      then("the comment must be loaded in the book")
+      book.comment should contain((user.username, commentA))
     }
   }
 }

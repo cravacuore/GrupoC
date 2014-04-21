@@ -2,7 +2,7 @@ package ar.edu.unq.desapp
 
 import java.util.ArrayList
 
-class LibrarySystem {
+class LibrarySystem (val configLoan: LoanConfiguration){
   var books: List[Book] = Nil
   var users: List[User] = Nil
 
@@ -22,10 +22,7 @@ class LibrarySystem {
   }
 
   def removeBook(anIsbn: String) {
-    this.getBookByIsbn(anIsbn) match {
-      case Some(book) => books = books filter (b => b.equals(book))
-      case None => Nil
-    }
+    books = books.flatMap(book => if (book.isbn == anIsbn) None else Some(book))
   }
 
   def changeAmount(anIsbn: String, amount: Int) {
@@ -40,6 +37,6 @@ class LibrarySystem {
   }
 
   def getBookByIsbn(anIsbn: String): Option[Book] = {
-    books find (b => (b.isbn == anIsbn))
+    books find (b => (b.isbn.contentEquals(anIsbn)))
   }
 }
