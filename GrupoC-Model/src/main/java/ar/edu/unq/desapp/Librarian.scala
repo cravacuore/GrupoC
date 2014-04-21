@@ -6,7 +6,6 @@ class Librarian(username: String, email: String, password: String, val librarySy
   extends User(username, email, password) {
 
   def addBookToSystem(book: Book, cant: Int = 1) {
-
     librarySystem manualBookLoad (book, cant)
   }
 
@@ -14,11 +13,23 @@ class Librarian(username: String, email: String, password: String, val librarySy
     //TODO: Implement
   }
 
-  def deleteBookFromTheSystem(aBook: Book) {librarySystem removeBook (aBook.isbn)}
+  def deleteBookFromTheSystem(aBook: Book) {
+    librarySystem removeBook (aBook.isbn)
+  }
 
-  def configureMaxReservesAmount(amount: Int) {} //TODO implement
+  def configureMaxReservesAmount(amount: Int) {
+    librarySystem.configLoan.amountAllowLoan = amount
+  }
 
-  def configureMaxDaysOfLoan(maxDate: Int) {} //TODO implement max date to loan
+  def configureMaxDaysOfLoan(maxDate: Int) {
+    librarySystem.configLoan.maxDaysOfLoan = maxDate
+  }
 
-  def registerUser(username: String, email: String, password: String) {} //TODO: implement register user
+  def registerUser(username: String, email: String, password: String, typeUser: String) {
+    //TODO validate if exist an user with same email
+    typeUser match {
+      case "User" => librarySystem.users = new User(username, email, password) :: librarySystem.users
+      case "Librarian" => librarySystem.users = new Librarian(username, email, password, librarySystem) :: librarySystem.users
+    }
+  }
 }

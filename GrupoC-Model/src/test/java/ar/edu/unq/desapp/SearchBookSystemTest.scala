@@ -11,8 +11,8 @@ class SearchBookSystemTest extends FunSpec with ShouldMatchers with GivenWhenThe
 
   describe("Search Book System") {
     ignore("should give a top 20 book rank") {
-      val librarySystem = new LibrarySystem
-      val searcher = new SearchBookSystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val searcher = new SearchBookSystem(librarySystem)
 
       given("the following books")
       val bookA = aBook.build
@@ -36,8 +36,8 @@ class SearchBookSystemTest extends FunSpec with ShouldMatchers with GivenWhenThe
     }
 
     ignore("should give a rank with the last books added") {
-      val librarySystem = new LibrarySystem
-      val searcher = new SearchBookSystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val searcher = new SearchBookSystem(librarySystem)
 
       given("the following books")
       val bookA = aBook.build
@@ -70,8 +70,8 @@ class SearchBookSystemTest extends FunSpec with ShouldMatchers with GivenWhenThe
     }
 
     ignore("should be able to find with no precise data") {
-      val librarySystem = new LibrarySystem
-      val searcher = new SearchBookSystem
+      val librarySystem = new LibrarySystem(mock[LoanConfiguration])
+      val searcher = new SearchBookSystem(librarySystem)
 
       given("the following data")
       val bookA = aBook.build

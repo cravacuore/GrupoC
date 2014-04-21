@@ -1,7 +1,6 @@
 package ar.edu.unq.desapp
 
-class SearchBookSystem {
-  val system: LibrarySystem = new LibrarySystem()
+class SearchBookSystem(val system: LibrarySystem) {
   var users: List[User] = Nil
 
   def top20borrowed: List[Book] = {

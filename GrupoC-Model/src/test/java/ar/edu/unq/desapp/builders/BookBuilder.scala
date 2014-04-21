@@ -4,6 +4,7 @@ import java.awt.Image
 import java.awt.image.BufferedImage
 import ar.edu.unq.desapp.Author
 import ar.edu.unq.desapp.Book
+import org.joda.time.DateTime
 
 class BookBuilder extends BuilderToTest[Book] {
 
@@ -13,7 +14,8 @@ class BookBuilder extends BuilderToTest[Book] {
   var image: Image = new BufferedImage(1, 1, 1)
   var description: String = "no description"
   var authors: List[Author] = Nil
-  var amount: Int = 1
+  var amount: Int = 1 //DEFAULT!!!!
+  var registrationDate = new DateTime
 
   def withTitle(aTitle: String): BookBuilder = {
     this.title = aTitle
@@ -50,7 +52,12 @@ class BookBuilder extends BuilderToTest[Book] {
     this
   }
 
-  override def build: Book = {
+  def withRegistrationDate(date: DateTime): BookBuilder = {
+    this.registrationDate = date
+    this
+  }
+
+  def build: Book = {
     new Book(
       this.title,
       this.isbn,

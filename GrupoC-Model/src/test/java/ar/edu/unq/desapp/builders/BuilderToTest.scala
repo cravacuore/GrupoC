@@ -3,7 +3,7 @@ package ar.edu.unq.desapp.builders
 import ar.edu.unq.desapp.LibrarySystem
 import ar.edu.unq.desapp.LoanManagement
 import ar.edu.unq.desapp.NotificationSystem
-import ar.edu.unq.desapp.LoanManagement
+import ar.edu.unq.desapp.LoanConfiguration
 
 abstract class BuilderToTest[T] {
 
@@ -12,8 +12,9 @@ abstract class BuilderToTest[T] {
 
 //Here define the builders to share with others test
 trait Builder {
-  val anUser: UserIdentity = new UserIdentity
-  val aLibrarian: LibrarianBuilder = new LibrarianBuilder(new LibrarySystem)
+  val aLoanConfiguration = new LoanConfiguration
+  val anUser: UserBuilder = new UserBuilder
+  val aLibrarian: LibrarianBuilder = new LibrarianBuilder(new LibrarySystem(aLoanConfiguration))
   val aBook: BookBuilder = new BookBuilder
-  val aLoanManagement: LoanManagement = new LoanManagement(new NotificationSystem)
+  val aLoanManagement: LoanManagement = new LoanManagement(new NotificationSystem, aLoanConfiguration)
 }

@@ -1,11 +1,12 @@
 package ar.edu.unq.desapp
 
+import org.joda.time.DateTime
 import org.scalatest.FunSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.ShouldMatchers
 import org.specs2.mock.Mockito
+
 import ar.edu.unq.desapp.builders.Builder
-import org.joda.time.DateTime
 
 class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito with Builder {
 
@@ -44,7 +45,7 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
     }
 
     it("should be loaded date of loan") {
-      val loanManagement = new LoanManagement(mock[NotificationSystem])
+      val loanManagement = new LoanManagement(mock[NotificationSystem], new LoanConfiguration)
       val date = new DateTime
       val endDate = date.plusDays(4)
 
@@ -64,7 +65,7 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
     }
 
     it("shouldn't record borrow since there was not book") {
-      val loanManagement = new LoanManagement(mock[NotificationSystem])
+      val loanManagement = new LoanManagement(mock[NotificationSystem], new LoanConfiguration)
 
       given("two users and one book")
       val userA = anUser.build
@@ -101,14 +102,16 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
 
       then("Loan Management should save reserve of users")
       loanManagement.reservedBooks should have size (2)
-      loanManagement.reservedBooks should (contain key ("userA@library.com") and contain value (List(busyBookB, busyBookA)))
-      loanManagement.reservedBooks should (contain key ("userB@library.com") and contain value (List(busyBookC)))
+      loanManagement.reservedBooks should (contain key (userA) and contain value (List(busyBookB, busyBookA)))
+      loanManagement.reservedBooks should (contain key (userB) and contain value (List(busyBookC)))
     }
 
     it("shouldn't allow an user reserve more than allowed") {
-      val loanManagement = aLoanManagement
+      val loanConf = new LoanConfiguration
+      loanConf.amountAllowLoan = 2
+      val loanManagement = new LoanManagement(mock[NotificationSystem], loanConf)
 
-      val user = anUser.withAmountAllowLoan(2).build
+      val user = anUser.build
       val busyBookA = aBook.build
       val busyBookB = aBook.build
       val busyBookC = aBook.build
@@ -119,12 +122,12 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
       loanManagement.reserveBook(user, busyBookB)
 
       then("the books busyBookA and busyBookC is reserved")
-      loanManagement.reservedBooks should contain key (user.email)
+      loanManagement.reservedBooks should contain key (user)
       loanManagement.reservedBooks should not contain value(busyBookB)
     }
 
     it("should sign up the users to notification list") {
-      val loanManagement = new LoanManagement(mock[NotificationSystem])
+      val loanManagement = new LoanManagement(mock[NotificationSystem], mock[LoanConfiguration])
 
       given("following users and a busy book")
       val userA = anUser.build
@@ -142,7 +145,7 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
     }
 
     it("handle the notifications of available books") {
-      val loanManagement = new LoanManagement(mock[NotificationSystem])
+      val loanManagement = new LoanManagement(mock[NotificationSystem], mock[LoanConfiguration])
 
       given("following user who borrow a book")
       val userWithBook = anUser.build
@@ -151,12 +154,27 @@ class LoanManagementTest extends FunSpec with ShouldMatchers with GivenWhenThen 
 
       when("other user who demand reserve this book and returned")
       val userAToNotify = anUser.build
-      loanManagement.signUpNotification(userAToNotify, borrowedBook)
+      loanManagement.reserveBook(userAToNotify, borrowedBook)
 
       loanManagement.deleteLoan(userWithBook, borrowedBook)
 
       then("it must send notice who have reserved")
-      there was one(loanManagement.notificationSystem).notifyUserOfAvailableBook(borrowedBook)
+      there was one(loanManagement.notificationSystem).notifyUserOfAvailableBook(userAToNotify, borrowedBook)
+    }
+
+    it("handle the notifications of available books when nobody have reserved the book"){
+      val loanManagement = new LoanManagement(mock[NotificationSystem], mock[LoanConfiguration])
+
+      given("following user who borrow a book")
+      val userWithBook = anUser.build
+      val borrowedBook = aBook.build
+      loanManagement.recordLoan(userWithBook, borrowedBook)
+
+      when("the user return the book")
+      loanManagement.deleteLoan(userWithBook, borrowedBook)
+
+      then("it must not send somebody notification")
+      there was no(loanManagement.notificationSystem).notifyUserOfAvailableBook(anUser.build, aBook.build)
     }
   }
 }
