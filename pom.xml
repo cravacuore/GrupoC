@@ -20,6 +20,14 @@
 		<url>http://github.com/GrupoHunter/</url>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>repository.springsource.milestone</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+		</repository>
+	</repositories>
+
 	<parent>
 		<groupId>ar.edu.unq</groupId>
 		<artifactId>aunq-parent</artifactId>
@@ -34,7 +42,7 @@
 		<cglib.version>2.1_3</cglib.version>
 		<scala.version>2.10.3</scala.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- SCALA -->
 		<dependency>
@@ -78,12 +86,19 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
 		</dependency>
-		
+
 		<!-- Added for scala/eclipse understanding of JodaTime constructors -->
 		<dependency>
 			<groupId>org.joda</groupId>
 			<artifactId>joda-convert</artifactId>
 			<version>1.6</version>
+		</dependency>
+
+		<!-- Spring Scala -->
+		<dependency>
+			<groupId>org.springframework.scala</groupId>
+			<artifactId>spring-scala_2.10</artifactId>
+			<version>1.0.0.RC1</version>
 		</dependency>
 
 	</dependencies>
@@ -141,29 +156,13 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			<plugin>
-				<groupId>org.scalastyle</groupId>
-				<artifactId>scalastyle-maven-plugin</artifactId>
-				<version>0.4.0</version>
-				<configuration>
-					<verbose>false</verbose>
-					<failOnViolation>true</failOnViolation>
-					<includeTestSourceDirectory>true</includeTestSourceDirectory>
-					<failOnWarning>false</failOnWarning>
-					<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-					<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-					<configLocation>${basedir}/lib/scalastyle_config.xml</configLocation>
-					<outputFile>${project.basedir}/scalastyle-output.xml</outputFile>
-					<outputEncoding>UTF-8</outputEncoding>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.scalastyle</groupId> <artifactId>scalastyle-maven-plugin</artifactId> 
+				<version>0.4.0</version> <configuration> <verbose>false</verbose> <failOnViolation>true</failOnViolation> 
+				<includeTestSourceDirectory>true</includeTestSourceDirectory> <failOnWarning>false</failOnWarning> 
+				<sourceDirectory>${basedir}/src/main/java</sourceDirectory> <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory> 
+				<configLocation>${basedir}/lib/scalastyle_config.xml</configLocation> <outputFile>${project.basedir}/scalastyle-output.xml</outputFile> 
+				<outputEncoding>UTF-8</outputEncoding> </configuration> <executions> <execution> 
+				<goals> <goal>check</goal> </goals> </execution> </executions> </plugin> -->
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
 				<version>2.6</version> <configuration> <useFile>false</useFile> <disableXmlReport>true</disableXmlReport> 
 				<includes> <include>**/*Test.*</include> <include>**/*Suite.*</include> </includes> 

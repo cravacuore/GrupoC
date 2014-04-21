@@ -16,6 +16,12 @@
 	<build>
 		<sourceDirectory>/src/main/java</sourceDirectory>
 		<testSourceDirectory>/src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 
 	<!-- <properties> <scala.version>2.10.3</scala.version> </properties> <dependencies> 
