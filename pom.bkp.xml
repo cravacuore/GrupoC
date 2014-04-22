@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ar.edu.unq.tpi.desapp</groupId>
@@ -20,6 +20,14 @@
 		<url>http://github.com/GrupoHunter/</url>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>repository.springsource.milestone</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+		</repository>
+	</repositories>
+
 	<parent>
 		<groupId>ar.edu.unq</groupId>
 		<artifactId>aunq-parent</artifactId>
@@ -36,7 +44,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!-- SCALA -->
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -73,7 +80,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- /SCALA -->
-
+		
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -87,63 +94,11 @@
 			<version>1.6</version>
 		</dependency>
 
+		<!-- Spring Scala -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.11</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r09</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math</artifactId>
-			<version>2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>net.sourceforge.collections</groupId>
-			<artifactId>collections-generic</artifactId>
-			<version>4.01</version>
+			<groupId>org.springframework.scala</groupId>
+			<artifactId>spring-scala_2.10</artifactId>
+			<version>1.0.0.RC1</version>
 		</dependency>
 
 	</dependencies>
@@ -201,6 +156,27 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- <plugin> <groupId>org.scalastyle</groupId> <artifactId>scalastyle-maven-plugin</artifactId> 
+				<version>0.4.0</version> <configuration> <verbose>false</verbose> <failOnViolation>true</failOnViolation> 
+				<includeTestSourceDirectory>true</includeTestSourceDirectory> <failOnWarning>false</failOnWarning> 
+				<sourceDirectory>${basedir}/src/main/java</sourceDirectory> <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory> 
+				<configLocation>${basedir}/lib/scalastyle_config.xml</configLocation> <outputFile>${project.basedir}/scalastyle-output.xml</outputFile> 
+				<outputEncoding>UTF-8</outputEncoding> </configuration> <executions> <execution> 
+				<goals> <goal>check</goal> </goals> </execution> </executions> </plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.6</version> <configuration> <useFile>false</useFile> <disableXmlReport>true</disableXmlReport> 
+				<includes> <include>**/*Test.*</include> <include>**/*Suite.*</include> </includes> 
+				</configuration> </plugin> <plugin> <artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.1</version> <configuration> <source>1.6</source> <target>1.6</target> 
+				</configuration> </plugin> -->
 		</plugins>
 	</build>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>scala-tools.org</id>
+			<name>Scala-tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
