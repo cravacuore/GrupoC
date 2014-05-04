@@ -12,37 +12,29 @@ abstract class LibraryUserBuilder[T <: LibraryUserBuilder[T, U], U] extends Buil
   var email: String = "no email"
   var borrowedBooks: List[Book] = List()
 
-  def withName(aName: String): T
-
-  def withPassword(aPassword: String): T
-
-  def withEmail(anEmail: String): T
-
-  def withBorrowedBooks(books: List[Book]): T
-
-}
-
-class UserBuilder extends LibraryUserBuilder[UserBuilder, User] {
-
-  def withName(aName: String): UserBuilder = {
+  def withName(aName: String): LibraryUserBuilder[T, U] = {
     this.name = aName
     this
   }
 
-  def withPassword(aPassword: String): UserBuilder = {
+  def withPassword(aPassword: String): LibraryUserBuilder[T, U] = {
     this.password = aPassword
     this
   }
 
-  def withEmail(anEmail: String): UserBuilder = {
+  def withEmail(anEmail: String): LibraryUserBuilder[T, U] = {
     this.email = anEmail
     this
   }
 
-  def withBorrowedBooks(books: List[Book]): UserBuilder = {
+  def withBorrowedBooks(books: List[Book]): LibraryUserBuilder[T, U] = {
     this.borrowedBooks = books
     this
   }
+
+}
+
+class UserBuilder extends LibraryUserBuilder[UserBuilder, User] {
 
   def build: User = {
     val user = new User(this.name, this.email, this.password)
@@ -54,27 +46,7 @@ class UserBuilder extends LibraryUserBuilder[UserBuilder, User] {
 class LibrarianBuilder(var librarySystem: LibrarySystem) extends LibraryUserBuilder[LibrarianBuilder, Librarian] {
 
   var system = librarySystem
-
-  def withName(aName: String): LibrarianBuilder = {
-    this.name = aName
-    this
-  }
-
-  def withPassword(aPassword: String): LibrarianBuilder = {
-    this.password = aPassword
-    this
-  }
-
-  def withEmail(anEmail: String): LibrarianBuilder = {
-    this.email = anEmail
-    this
-  }
-
-  def withBorrowedBooks(books: List[Book]): LibrarianBuilder = {
-    this.borrowedBooks = books
-    this
-  }
-
+  
   def withLibrarySystem(libSystem: LibrarySystem): LibrarianBuilder = {
     this.librarySystem = libSystem
     this
