@@ -14,6 +14,6 @@ class User(val username: String, val email: String, val password: String) {
   }
 
   def commentBook(aBook: Book, aComment: String) {
-    aBook.comment = (this.username, aComment) :: aBook.comment
+    aBook.addComment(this, aComment)
   }
 }

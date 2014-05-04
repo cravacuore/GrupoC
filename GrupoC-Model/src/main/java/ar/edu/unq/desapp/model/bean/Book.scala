@@ -13,5 +13,10 @@ class Book(
   var amount: Int = 1 ,
   val registrationDate: DateTime = new DateTime
 ){
-  var comment: List[(String, String)] = Nil // (username, comment)
+  var comment: List[Comment] = Nil // (username, comment)
+  
+  def addComment(anUser: User, comment: String) = {
+    val aComment = new Comment(anUser, comment, new DateTime)
+    this.comment = aComment :: this.comment
+  }
 }

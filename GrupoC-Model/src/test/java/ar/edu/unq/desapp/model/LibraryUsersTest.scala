@@ -243,7 +243,7 @@ class LibraryUsersTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       user.commentBook(book, commentA)
 
       then("the comment must be loaded in the book")
-      book.comment should contain((user.username, commentA))
+      book.comment(0) should have('anUser(user), 'comment("This is a comment, poor, but it is"))
     }
   }
 }
