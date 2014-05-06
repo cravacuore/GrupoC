@@ -6,7 +6,9 @@
 	<artifactId>GrupoC-parent</artifactId>
 	<inceptionYear>2014</inceptionYear>
 	<packaging>pom</packaging>
+
 	<name>GrupoC-parent</name>
+	<url>http://maven.apache.org</url>
 
 	<modules>
 		<module>GrupoC-Presentation</module>
@@ -36,7 +38,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!-- SCALA -->
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -44,6 +45,12 @@
 			<version>${scala.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.scalaj</groupId>
+			<artifactId>scalaj-collection_2.10</artifactId>
+			<version>1.5</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.scalatest</groupId>
 			<artifactId>scalatest_2.10</artifactId>
@@ -149,6 +156,9 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -201,6 +211,29 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+	            <groupId>org.scalastyle</groupId>
+	            <artifactId>scalastyle-maven-plugin</artifactId>
+	            <version>0.4.0</version>
+	            <configuration>
+	              <verbose>false</verbose>
+	              <failOnViolation>true</failOnViolation>
+	              <includeTestSourceDirectory>true</includeTestSourceDirectory>
+	              <failOnWarning>false</failOnWarning>
+	              <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+	              <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+	              <configLocation>${basedir}/lib/scalastyle_config.xml</configLocation>
+	              <outputFile>${project.basedir}/scalastyle-output.xml</outputFile>
+	              <outputEncoding>UTF-8</outputEncoding>
+	            </configuration>
+	            <executions>
+	              <execution>
+	                <goals>
+	                  <goal>check</goal>
+	                </goals>
+	              </execution>
+	            </executions>
+          	</plugin>
 		</plugins>
 	</build>
 </project>
