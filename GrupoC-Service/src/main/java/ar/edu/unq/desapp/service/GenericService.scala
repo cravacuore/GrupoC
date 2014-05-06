@@ -3,10 +3,9 @@ package ar.edu.unq.desapp.service
 import org.springframework.transaction.annotation.Transactional
 import ar.edu.unq.desapp.repository.generic.GenericRepository
 
-@serializable
 class GenericService[T]() {
 
-  val serialVersionUID: Long = -6540963495078524186L
+  private val serialVersionUID: Long = -6540963495078524186L
 
   var repository: GenericRepository[T] = _
 

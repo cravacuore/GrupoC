@@ -13,11 +13,6 @@
 	<name>GrupoC-Model</name>
 	<url>http://maven.apache.org</url>
 
-	<build>
-		<sourceDirectory>/src/main/java</sourceDirectory>
-		<testSourceDirectory>/src/test/java</testSourceDirectory>
-	</build>
-
 	<!-- Hibernate -->
 	<dependencies>
 		<dependency>

@@ -6,7 +6,7 @@ import reflect.BeanProperty
 @Entity
 @Table(name = "USER")
 @Inheritance(strategy=InheritanceType.JOINED)
-class User(
+class User (
   @Column(name = "name") var username: String,
   @Column(name = "email") var email: String,
   @Column(name = "password") var password: String) {

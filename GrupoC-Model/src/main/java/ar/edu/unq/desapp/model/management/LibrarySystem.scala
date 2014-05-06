@@ -4,6 +4,7 @@ import java.util.ArrayList
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.model.bean.User
 import ar.edu.unq.desapp.model.bean.LoanConfiguration
+import javax.persistence.Entity
 
 class LibrarySystem (val configLoan: LoanConfiguration){
   var books: List[Book] = Nil
