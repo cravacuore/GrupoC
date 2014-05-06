@@ -2,7 +2,11 @@ package ar.edu.unq.desapp.model.bean
 
 import java.awt.Image
 import ar.edu.unq.desapp.model.management.LibrarySystem
+import javax.persistence._
 
+@Entity
+@Table(name = "LIBRARIAN")
+@PrimaryKeyJoinColumn(name = "id_user")
 class Librarian(username: String, email: String, password: String, val librarySystem: LibrarySystem)
   extends User(username, email, password) {
 

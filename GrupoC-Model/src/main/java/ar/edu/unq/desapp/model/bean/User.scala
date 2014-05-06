@@ -1,9 +1,23 @@
 package ar.edu.unq.desapp.model.bean
 
-class User(val username: String, val email: String, val password: String) {
+import javax.persistence._
+import reflect.BeanProperty
 
+@Entity
+@Table(name = "USER")
+@Inheritance(strategy=InheritanceType.JOINED)
+class User(
+  @Column(name = "name") var username: String,
+  @Column(name = "email") var email: String,
+  @Column(name = "password") var password: String) {
+
+  @Id @GeneratedValue
+  @Column(name = "id_user")
+  var id: Long = 0
+
+  @OneToMany(mappedBy = "id_book")
   var borrowedBooks: List[Book] = Nil
-
+  
   def borrowBook(aBook: Book) {
     borrowedBooks = aBook :: borrowedBooks
   }
