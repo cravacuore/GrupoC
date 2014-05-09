@@ -2,17 +2,17 @@ package ar.edu.unq.desapp.model.bean
 
 import javax.persistence.{ GeneratedValue, Id, Entity }
 import reflect.BeanProperty
-import javax.persistence._
+import javax.persistence.OneToMany
+import javax.persistence.Table
+
 
 @Entity
 @Table(name = "AUTHOR")
-class Author(@Column(name = "name") var name: String) {
+class Author(var name: String) {
 
   @Id @GeneratedValue
-  @Column(name = "id_author")
-  var id: Long = 0
+  var id: Long = _
 
-  @Column(name = "written_books")
   @OneToMany(mappedBy = "id_book")
   var writtenBooks: List[Book] = Nil
 }

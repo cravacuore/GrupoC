@@ -7,13 +7,12 @@ import reflect.BeanProperty
 @Table(name = "USER")
 @Inheritance(strategy=InheritanceType.JOINED)
 class User (
-  @Column(name = "name") var username: String,
-  @Column(name = "email") var email: String,
-  @Column(name = "password") var password: String) {
+  var username: String,
+  var email: String,
+  var password: String) {
 
   @Id @GeneratedValue
-  @Column(name = "id_user")
-  var id: Long = 0
+  var id: Long = _
 
   @OneToMany(mappedBy = "id_book")
   var borrowedBooks: List[Book] = Nil

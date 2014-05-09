@@ -16,5 +16,5 @@ class Comment(
 ){
   @Id @GeneratedValue
   @Column(name = "id_comment")
-  var id: Long = 0
+  var id: Long = _
 }

@@ -6,17 +6,17 @@ import reflect.BeanProperty
 import javax.persistence._
 
 @Entity
-@serializable
 @Table(name = "LOAN_BOOK")
 class LoanBook(
-  @OneToOne(mappedBy = "id_user") var anUser: User,
-  @OneToOne(mappedBy = "id_book") var aBook: Book,
-  @Column(name = "date_of_loan") var dateOfLoan: DateTime,
-  @Column(name = "refund_date") var refundDate: DateTime) {
+  @OneToOne(mappedBy = "id_user") 
+  var anUser: User,
+  @OneToOne(mappedBy = "id_book")
+  var aBook: Book,
+  var dateOfLoan: DateTime,
+  var refundDate: DateTime) {
 
   @Id @GeneratedValue
-  @Column(name = "id_loan_book")
-  var id: Long = 0
+  var id: Long = _
 
   def isOutOfDate: Boolean = {
     dateOfLoan.isAfter(refundDate)

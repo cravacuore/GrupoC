@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/MenuButtonModel.scala">
+  <error column="0" line="7" source="org.scalastyle.file.FileTabChecker" severity="warning" message="Line contains a tab"></error>
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/HomePage.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+  <error column="6" line="18" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/components/BodyPanel.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+  <error column="6" line="7" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ </file>
+</checkstyle>
