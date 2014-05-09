@@ -7,7 +7,7 @@ import javax.persistence._
 @Entity
 @Table(name = "LIBRARIAN")
 @PrimaryKeyJoinColumn(name = "id_user")
-class Librarian(username: String, email: String, password: String, val librarySystem: LibrarySystem)
+class Librarian(username: String, email: String, password: String, @Transient val librarySystem: LibrarySystem)
   extends User(username, email, password) {
 
   def addBookToSystem(book: Book, cant: Int = 1) {
