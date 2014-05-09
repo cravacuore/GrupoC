@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.service.bean
+package ar.edu.unq.desapp.services.bean
 
-import ar.edu.unq.desapp.service.GenericService
+import ar.edu.unq.desapp.services.GenericService
 import ar.edu.unq.desapp.model.bean.User
 
 class UserService extends GenericService[User]{

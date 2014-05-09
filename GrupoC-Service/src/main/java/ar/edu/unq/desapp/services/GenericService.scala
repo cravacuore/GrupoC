@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.service
+package ar.edu.unq.desapp.services
 
 import org.springframework.transaction.annotation.Transactional
 import ar.edu.unq.desapp.repository.generic.GenericRepository
@@ -15,7 +15,7 @@ class GenericService[T]() extends Serializable {
   }
 
   @Transactional(readOnly = true)
-  def delete(obj: T) = {
+  def delete(obj: T) {
     this.repository.delete(obj)
   }
 
@@ -33,9 +33,8 @@ class GenericService[T]() extends Serializable {
   def deleteById(id: Serializable) {
     this.repository.deleteById(id)
   }
-  //	@Transactional
-  //	def retriveAll: List[T] = {
-  //		this.repository.findAll;
-  //	}
-
+  //  @Transactional
+  //  def retriveAll: List[T] = {
+  //    this.repository.findAll;
+  //  }
 }

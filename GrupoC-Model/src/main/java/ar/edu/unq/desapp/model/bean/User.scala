@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.model.bean
 
-import javax.persistence._
 import reflect.BeanProperty
+import javax.persistence._
 
 @Entity
 @Table(name = "USER")
@@ -16,7 +16,7 @@ class User (
 
   @OneToMany(mappedBy = "id_book")
   var borrowedBooks: List[Book] = Nil
-  
+
   def borrowBook(aBook: Book) {
     borrowedBooks = aBook :: borrowedBooks
   }
