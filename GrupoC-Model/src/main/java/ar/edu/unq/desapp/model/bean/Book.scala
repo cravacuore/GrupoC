@@ -17,15 +17,15 @@ class Book(
   var amount: Int = 1 ,
   var registrationDate: DateTime = new DateTime
 ){
-  
+
   private val serialVersionUID: Long = 1L
-  
+
   @Id @GeneratedValue
   var id: Long = _
-  
-  var comment: List[Comment] = Nil 
-  
-  def addComment(anUser: User, comment: String) = {
+
+  var comment: List[Comment] = Nil
+
+  def addComment(anUser: User, comment: String) {
     val aComment = new Comment(anUser, comment, new DateTime)
     this.comment = aComment :: this.comment
   }

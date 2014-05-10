@@ -8,7 +8,7 @@ import javax.persistence._
 @Entity
 @Table(name = "LOAN_BOOK")
 class LoanBook(
-  @OneToOne(mappedBy = "id_user") 
+  @OneToOne(mappedBy = "id_user")
   var anUser: User,
   @OneToOne(mappedBy = "id_book")
   var aBook: Book,

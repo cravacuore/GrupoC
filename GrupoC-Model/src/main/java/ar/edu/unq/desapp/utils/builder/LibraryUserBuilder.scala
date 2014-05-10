@@ -46,7 +46,7 @@ class UserBuilder extends LibraryUserBuilder[UserBuilder, User] {
 class LibrarianBuilder(var librarySystem: LibrarySystem) extends LibraryUserBuilder[LibrarianBuilder, Librarian] {
 
   var system = librarySystem
-  
+
   def withLibrarySystem(libSystem: LibrarySystem): LibrarianBuilder = {
     this.librarySystem = libSystem
     this

@@ -10,7 +10,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
 	
 	protected def getDomainClass: Class[T]
 	
-	override def save(entity: T) = {
+	override def save(entity: T) {
 	  this.getHibernateTemplate.save(entity)
 	  this.getHibernateTemplate.flush()
 	}
@@ -20,7 +20,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
 //	  null
 //	}
 	
-	override def delete(entity: T) = {
+	override def delete(entity: T) {
 	  this.getHibernateTemplate().delete(entity)
 	}
 	
@@ -29,7 +29,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
 		this.getHibernateTemplate().delete(obj);
 	}
 	
-	override def update(entity: T) = {
+	override def update(entity: T) {
 	  this.getHibernateTemplate().update(entity)
 	}
 	
