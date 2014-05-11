@@ -4,9 +4,8 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession
 import org.apache.wicket.authroles.authorization.strategies.role.Roles
 import org.apache.wicket.request.Request
 
+@SerialVersionUID(1L)
 class WebSession(request: Request) extends AuthenticatedWebSession(request: Request) {
-
-	private val serialVersionUID: Long = 1L;
 
 	override def authenticate(username: String, password: String ): Boolean = {
 		true

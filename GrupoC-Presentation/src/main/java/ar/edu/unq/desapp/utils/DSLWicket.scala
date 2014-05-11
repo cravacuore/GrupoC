@@ -150,8 +150,8 @@ trait DSLWicket {
   def dropDownChoice[T](id: String, choices: java.util.List[_ <: T] = null)(implicit m: scala.reflect.Manifest[T]): DropDownChoice[T] = {
     val dropdown = new DropDownChoice[T](id, choices); add(dropdown); dropdown
   }
-  def emailLink(id: String, email: String, label: String) { val el = new ExternalLink(id, "mailto:" + email, label); add(el); el; }
-  def emailLink(id: String, email: String) { emailLink(id, email, email) }
+//  def emailLink(id: String, email: String, label: String) { val el = new ExternalLink(id, "mailto:" + email, label); add(el); el; }
+//  def emailLink(id: String, email: String) { emailLink(id, email, email) }
   def select[T](id: String) = {
     val ddc = new DropDownChoice[T](id)
     add(ddc); ddc
