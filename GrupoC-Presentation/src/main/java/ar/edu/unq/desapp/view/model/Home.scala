@@ -13,6 +13,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 import ar.edu.unq.desapp.utils.DSLWicket
 import ar.edu.unq.desapp.view.tabs.ManageBookPanel
 import ar.edu.unq.desapp.services.GeneralService
+import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPanel
+import org.apache.wicket.markup.html.form.Button
 
 
 @SerialVersionUID(9798132401L)
@@ -25,22 +27,28 @@ class Home extends WebPage with DSLWicket {
 
   override def onInitialize {
     super.onInitialize
-    val form = new Form[GeneralService]("GeneralServiceForm", new CompoundPropertyModel[GeneralService](this.generalService))
-    this.createTabsBook(form)
-    add(form)
+    
+//    this.createTabs
+//    val form = new Form[GeneralService]("GeneralServiceForm", new CompoundPropertyModel[GeneralService](this.generalService))
+//    this.createTabsBook(form)
+//    add(form)
   }
+  
+//  protected def changeTab {
+//     add(new Button("button"))
+//  }
 
-  protected def createTabsBook(form: Form[GeneralService]) {
+  protected def createTabs() {
     var tabs: List[AbstractTab] = List(
-        (new AbstractTab(new Model[String]("Manage Book")) {
-        def getPanel(panelId: String): Panel = { return new ManageBookPanel(panelId, generalService.bookService) }
-        }),
-        (new AbstractTab(new Model[String]("Ranking of the most borrowed")) {
-        def getPanel(panelId: String): Panel = { return new ManageBookPanel(panelId, generalService.bookService) }
-        })
+//        (new AbstractTab(new Model[String]("tab1")) {
+//        def getPanel(panelId: String): Panel = { return new ManageBookPanel(panelId, generalService.bookService) }
+//        }),
+//        (new AbstractTab(new Model[String]("tab3")) {
+//        override def getPanel(panelId: String): Panel = { new RankingBorrowedBookPanel(panelId, generalService.bookService) }
+//        })
     )
     
-    add(new TabbedPanel("tabs", tabs.asJava))
+//    add(new TabbedPanel("tabs", tabs.asJava))
   }
  
 }

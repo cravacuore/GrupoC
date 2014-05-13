@@ -7,7 +7,7 @@ class BookService extends GenericService[Book]{
 
   private val serialVersionUID: Long = 1L
   
-  def retriveAll = {
-    //TODO
+  def retriveAllMostBorrowed = {
+    List()
   }
 }

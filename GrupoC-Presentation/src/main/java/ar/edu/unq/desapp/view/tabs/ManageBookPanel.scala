@@ -21,6 +21,7 @@ class ManageBookPanel(var idPanel: String, var services: BookService) extends Pa
   var form: Form[Book] = new Form[Book]("bookForm", new CompoundPropertyModel[Book](this.bookEmtpy))
   
   override def onInitialize() {
+    super.onInitialize
     this.descriptionBookLabel(form)
     this.textFieldAddBook(form)
     this.createButton(form)
@@ -42,11 +43,11 @@ class ManageBookPanel(var idPanel: String, var services: BookService) extends Pa
   }
   
   protected def descriptionBookLabel(form: Form[Book]) {
-    form.add(new Label("title"))
-    form.add(new Label("isbn"))
-    form.add(new Label("editorial"))
-    form.add(new Label("amount"))
-    form.add(new Label("description"))
+    form.add(new Label("labelTitle"))
+    form.add(new Label("labelIsbn"))
+    form.add(new Label("labelEditorial"))
+    form.add(new Label("labelAmount"))
+    form.add(new Label("labelDescription"))
   }
 
   protected def textFieldAddBook(form: Form[Book]) {
