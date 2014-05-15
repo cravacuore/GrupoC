@@ -15,7 +15,7 @@
 
 <body>
 	<!-- <form wicket:id="GeneralServiceForm" class="container"> -->
-	<form class="container">
+<!-- 	<form class="container"> -->
 		<!-- <img src="..." class="img-polaroid"> -->
 		<h1>Library System</h1>
 
@@ -24,124 +24,125 @@
 		<br />
 
 		<!-- Tab navigation -->
-		<div class="tabbable">
-			<!-- Only required for left/right tabs -->
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab1" data-toggle="tab">List</a></li>
-				<li><a href="#tab2" data-toggle="tab">Add Book</a></li>
-				<li><a href="#tab3" data-toggle="tab">Top20</a></li>
-			</ul>
-			<br />
+<!-- 		<div class="tabbable"> -->
+<!-- 			<!-- Only required for left/right tabs --> 
+<!-- 			<ul class="nav nav-tabs"> -->
+<!-- 				<li class="active"><a href="#tab1" data-toggle="tab">List</a></li> -->
+<!-- 				<li><a href="#tab2" data-toggle="tab">Add Book</a></li> -->
+<!-- 				<li><a href="#tab3" data-toggle="tab">Top20</a></li> -->
+<!-- 			</ul> -->
+<!-- 			<br /> -->
 
 			<!-- Tabs Content -->
-			<div class="tab-content">
+			<div wicket:id="tabs" class="tabbable"></div>
+<!-- 			<div class="tab-content"> -->
 
-				<!-- Tab: List of books -->
-				<div class="tab-pane active" id="tab1">
-					<div class="panel panel-default">
-						<table class="table table-striped table-condensed table-hover">
-							<div class="panel-heading">Books on the system</div>
-							<tbody>
-								<tr class="thead">
-									<th>Title</th>
-									<th>Isbn</th>
-									<th>Registration Date</th>
-								</tr>
+<!-- 				Tab: List of books -->
+<!-- 				<div class="tab-pane active" id="tab1"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<table class="table table-striped table-condensed table-hover"> -->
+<!-- 							<div class="panel-heading">Books on the system</div> -->
+<!-- 							<tbody> -->
+<!-- 								<tr class="thead"> -->
+<!-- 									<th>Title</th> -->
+<!-- 									<th>Isbn</th> -->
+<!-- 									<th>Registration Date</th> -->
+<!-- 								</tr> -->
 
-								<tr>
-									<!-- TODO - get Data -->
-									<td><a href="#detailBookModal" data-toggle="modal">Journey To The Center Of The Earth<!-- getData --></a></td>
-									<td><p>1462095380<!-- getData --></p></td>
-									<td><p>05/11/1999<!-- getData --></p></td>
-								</tr>
-								<tr>
-									<!-- <div class="panel-heading">Ranking borrowed books</div> -->
-									<td><a href="#detailBookModal" data-toggle="modal">Tales from Earthsea<!-- getData --></a></td>
-									<td><p>844507668X<!-- getData --></p></td>
-									<td><p>02/12/2007<!-- getData --></p></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+<!-- 								<tr> -->
+<!-- 									TODO - get Data -->
+<!-- 									<td><a href="#detailBookModal" data-toggle="modal">Journey To The Center Of The EarthgetData</a></td> -->
+<!-- 									<td><p>1462095380getData</p></td> -->
+<!-- 									<td><p>05/11/1999getData</p></td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<div class="panel-heading">Ranking borrowed books</div> -->
+<!-- 									<td><a href="#detailBookModal" data-toggle="modal">Tales from EarthseagetData</a></td> -->
+<!-- 									<td><p>844507668XgetData</p></td> -->
+<!-- 									<td><p>02/12/2007getData</p></td> -->
+<!-- 								</tr> -->
+<!-- 							</tbody> -->
+<!-- 						</table> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<!-- Show details -->
-				<div id="detailBookModal" class="modal hide fade" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h3 id="myModalLabel">Details of book</h3>
-					</div>
-					<div class="modal-body">
-						<p>
-							Let's details a fine book.....
-							<!-- getData -->
-						</p>
-					</div>
-				</div>
+<!-- 				Show details -->
+<!-- 				<div id="detailBookModal" class="modal hide fade" tabindex="-1" -->
+<!-- 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+<!-- 							aria-hidden="true">×</button> -->
+<!-- 						<h3 id="myModalLabel">Details of book</h3> -->
+<!-- 					</div> -->
+<!-- 					<div class="modal-body"> -->
+<!-- 						<p> -->
+<!-- 							Let's details a fine book..... -->
+<!-- 							getData -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<!-- Tab: Add Book -->
-				<div class="tab-pane" id="tab2">
-					<form>
-						<fieldset>
-							<legend>Add book to the system</legend>
+<!-- 				Tab: Add Book -->
+<!-- 				<div class="tab-pane" id="tab2"> -->
+<!-- 					<form> -->
+<!-- 						<fieldset> -->
+<!-- 							<legend>Add book to the system</legend> -->
 
-							<input id="title" type="text" placeholder="Title"> <span
-								class="help-inline">Ej: Journey To The Center Of The
-								Earth</span> <input id="editorial" type="text" placeholder="Editorial">
-							<span class="help-inline">Ej: Super Pepitos Editorial</span> <input
-								id="isbn" type="text" placeholder="Isbn">
-							<textarea id="description"
-								placeholder="A description about this book>" rows="4"></textarea>
-						</fieldset>
-					</form>
+<!-- 							<input id="title" type="text" placeholder="Title"> <span -->
+<!-- 								class="help-inline">Ej: Journey To The Center Of The -->
+<!-- 								Earth</span> <input id="editorial" type="text" placeholder="Editorial"> -->
+<!-- 							<span class="help-inline">Ej: Super Pepitos Editorial</span> <input -->
+<!-- 								id="isbn" type="text" placeholder="Isbn"> -->
+<!-- 							<textarea id="description" -->
+<!-- 								placeholder="A description about this book>" rows="4"></textarea> -->
+<!-- 						</fieldset> -->
+<!-- 					</form> -->
 
-					<!--                         <form class="form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label" for="inputTitle">Title</label>
-                                <div class="controls">
-                                    <input type="text" id="inputTitle" placeholder="Title">
-                                </div>
-                            </div>
-                        </form> -->
+<!-- 					                        <form class="form-horizontal">
+<!--                             <div class="control-group"> -->
+<!--                                 <label class="control-label" for="inputTitle">Title</label> -->
+<!--                                 <div class="controls"> -->
+<!--                                     <input type="text" id="inputTitle" placeholder="Title"> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </form> -->
 
-					<div class="form-actions">
-						<button type="submit" class="btn btn-danger">Save</button>
-						<button type="button" class="btn btn-success">Cancel</button>
-					</div>
-				</div>
+<!-- 					<div class="form-actions"> -->
+<!-- 						<button type="submit" class="btn btn-danger">Save</button> -->
+<!-- 						<button type="button" class="btn btn-success">Cancel</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<!-- Tab: Top20 -->
-				<!-- <div wicket:id="BookServiceForm" class="tab-pane active" id="tab3"> -->
-				<div class="tab-pane" id="tab3">
-					<div class="panel panel-default">
-						<table class="table table-striped table-condensed table-hover">
-							<!-- <div class="panel-heading">Ranking borrowed books</div> -->
+<!-- 				Tab: Top20 -->
+<!-- 				<div wicket:id="BookServiceForm" class="tab-pane active" id="tab3"> -->
+<!-- 				<div class="tab-pane" id="tab3"> -->
+<!-- 					<div class="panel panel-default"> -->
+<!-- 						<table class="table table-striped table-condensed table-hover"> -->
+<!-- 							<div class="panel-heading">Ranking borrowed books</div> -->
 
-							<!-- <tbody wicket:id="retriveAllMostBorrowed"> -->
-							<tbody>
-								<tr class="thead">
-									<th>Title</th>
-									<th>Isbn</th>
-								</tr>
+<!-- 							<tbody wicket:id="retriveAllMostBorrowed"> -->
+<!-- 							<tbody> -->
+<!-- 								<tr class="thead"> -->
+<!-- 									<th>Title</th> -->
+<!-- 									<th>Isbn</th> -->
+<!-- 								</tr> -->
 
-								<tr>
-									<!-- <td wicket:id="title">bookTitle</td> -->
-									<td>bookTitle</td>
-									<!-- <td wicket:id="isbn">bookIsbn</td> -->
-									<td>bookIsbn</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+<!-- 								<tr> -->
+<!-- 									<td wicket:id="title">bookTitle</td> -->
+<!-- 									<td>bookTitle</td> -->
+<!-- 									<td wicket:id="isbn">bookIsbn</td> -->
+<!-- 									<td>bookIsbn</td> -->
+<!-- 								</tr> -->
+<!-- 							</tbody> -->
+<!-- 						</table> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-			</div>
-		</div>
+<!-- 			</div> -->
+<!-- 		</div> -->
 
-		<wicket:child />
-	</form>
+<!-- 		<wicket:child /> -->
+<!-- 	</form> -->
 </body>
 
 </html>
