@@ -13,9 +13,4 @@ class LibrarianRepository extends HibernateGenericDAO[Librarian] {
   override def getDomainClass: Class[Librarian] = {
     classOf[Librarian]
   }
-  
-  override def findAll: List[Librarian] = {
-    this.getHibernateTemplate().find("from " + this.getDomainClass.getName() + " o")
-      .asInstanceOf[java.util.List[Librarian]].toList
-  }
 }

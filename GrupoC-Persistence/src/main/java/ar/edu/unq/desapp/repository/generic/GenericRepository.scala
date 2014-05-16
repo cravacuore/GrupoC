@@ -12,9 +12,9 @@ trait GenericRepository[T] {
 
   def deleteById(id: Serializable)
 
-//  def findAll(): List[T];
-//
-//  def count(): Int
-//
-//  def findByExample(t: T): List[T]
+  def findAll: List[T];
+
+  def count: Int
+
+  def findByExample(t: T): List[T]
 }

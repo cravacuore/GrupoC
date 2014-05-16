@@ -13,9 +13,4 @@ class AuthorRepository extends HibernateGenericDAO[Author] {
   override def getDomainClass: Class[Author] = {
     classOf[Author]
   }
-  
-  override def findAll: List[Author] = {
-    this.getHibernateTemplate().find("from " + this.getDomainClass.getName() + " o")
-      .asInstanceOf[java.util.List[Author]].toList
-  }
 }

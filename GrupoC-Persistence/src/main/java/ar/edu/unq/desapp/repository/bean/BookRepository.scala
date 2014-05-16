@@ -13,9 +13,4 @@ class BookRepository extends HibernateGenericDAO[Book] {
   override def getDomainClass: Class[Book] = {
     classOf[Book]
   }
-  
-  override def findAll: List[Book] = {
-    this.getHibernateTemplate().find("from " + this.getDomainClass.getName() + " o")
-      .asInstanceOf[java.util.List[Book]].toList
-  }
 }
