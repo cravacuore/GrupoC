@@ -14,8 +14,37 @@ import ar.edu.unq.desapp.services.GeneralService
 import ar.edu.unq.desapp.services.bean.BookService
 import ar.edu.unq.desapp.utils.builder.BookBuilder
 
+import ar.edu.unq.desapp.appModel.BookListAppModel
+
 //@SerialVersionUID(33415151324214142l)
-class ManageBookPanel(var idPanel: String) extends Panel(idPanel) {
+class BookListPanel(var idPanel: String) extends Panel(idPanel) {
+
+	override def onInitialize(){
+		super.onInitialize
+		val bookListAppModel = new BookListAppModel()
+		val form = new Form[BookListAppModel](
+		    "appModelForm",
+		    new CompoundPropertyModel[BookListAppModel](bookListAppModel)
+		)
+	  
+		// addBookTable(form)
+		
+		add(form)
+	}
+
+	// Adds table book items
+	def addBookTable(form: Form[BookListAppModel]) {
+		val books =
+			new PropertyListView[Book]("books") {
+		  	override def populateItem(item: ListItem[Book]) = 
+		    	item.add(
+		      		new Label("title"),
+		      		new Label("isbn"),
+		      		new Label("date")
+		      	)
+			}
+		form.add(books)
+	}
 
 //  var bookEmtpy: Book = new BookBuilder().build
 //  var form: Form[Book] = new Form[Book]("bookForm", new CompoundPropertyModel[Book](this.bookEmtpy))
@@ -84,5 +113,4 @@ class ManageBookPanel(var idPanel: String) extends Panel(idPanel) {
 //    })
 //    
 //  }
-  
 }

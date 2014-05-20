@@ -10,19 +10,11 @@ import org.apache.wicket.model.Model
 import org.apache.wicket.spring.injection.annot.SpringBean
 //import ar.edu.unq.desapp.services.GeneralService
 import ar.edu.unq.desapp.utils.DSLWicket
-import ar.edu.unq.desapp.view.tabs.ManageBookPanel
+import ar.edu.unq.desapp.view.tabs.BookListPanel
 import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPanel
-import ar.edu.unq.desapp.view.tabs.ManageBookPanel
-import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPanel
-import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPanel
-import ar.edu.unq.desapp.view.tabs.ManageBookPanel
-
 
 @SerialVersionUID(9798132401L)
 class Home extends WebPage with DSLWicket {
-
-//  @SpringBean(name = "services.general")
-//  var generalService: GeneralService = new GeneralService
 
   var message: Label = null
 
@@ -31,19 +23,19 @@ class Home extends WebPage with DSLWicket {
     add(this.createTabs)
   }
   
-  protected def createTabs: TabbedPanel = {
+  protected def createTabs: TabbedPanel[AbstractTab] = {
     var tabs: List[AbstractTab] = List(
-        (new AbstractTab(new Model("Manage Book")) {
+        (new AbstractTab(new Model("BookListPanel")) {
         	def getPanel(panelId: String): Panel = { 
-        	  return new ManageBookPanel(panelId) 
+        	  new BookListPanel(panelId)
         	}
         }),
-        (new AbstractTab(new Model("Ranking")) {
+        (new AbstractTab(new Model("RankingBorrowedBookPanel")) {
         	def getPanel(panelId: String): Panel = { 
         	  new RankingBorrowedBookPanel(panelId) 
         	}
         })
     )
     new TabbedPanel("tabs", tabs.asJava)
-  } 
+  }
 }
