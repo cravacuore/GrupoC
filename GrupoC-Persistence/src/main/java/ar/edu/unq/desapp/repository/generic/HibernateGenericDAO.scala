@@ -20,7 +20,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
     this.getHibernateTemplate.save(entity)
     this.getHibernateTemplate.flush()
   }
-
+  
   override def findByExample(entity: T): List[T] = {
     this.getHibernateTemplate().findByExample(entity).asInstanceOf[java.util.List[T]].toList
   }

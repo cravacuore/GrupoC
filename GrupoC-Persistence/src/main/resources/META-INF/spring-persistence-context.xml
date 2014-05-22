@@ -25,7 +25,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<props>
@@ -38,28 +38,13 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 				</prop>
 			</props>
 		</property>
-		<property name="mappingLocations">
-			<list>
-				<value>classpath*:mappings/*.hbm.xml</value>
-			</list>
-		</property>
 		
-		<property name="hibernateProperties">
-			<props>
-				<!-- Configuration generic properties. They are loaded from file hibernate.properties -->
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-
-				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
-				<!-- Propiedades para la configuración de la cache de segundo nivel <prop 
-					key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop> 
-					<prop key="hibernate.cache.use_second_level_cache">false</prop> <prop key="hibernate.cache.use_query_cache">true</prop> -->
-				<prop key="hibernate.connection.autocommit">false</prop>
-				<prop key="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory
-				</prop>
-			</props>
-		</property>
+		<property name="packagesToScan" value='ar.edu.unq.desapp.model.bean' />
+<!-- 			<list> -->
+<!-- 				<value>classpath*:mappings/*.hbm.xml</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+		
 	</bean>
 
 </beans>
