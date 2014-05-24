@@ -5,12 +5,48 @@ import reflect.BeanProperty
 import javax.persistence._
 
 @Entity
-@Table(name = "COMMENT")
+@Table(name = "comments")
 class Comment(
-  @OneToOne(mappedBy = "id_user") var anUser: User,
-  @Column(name = "comment") var comment: String,
-  @Column(name = "comment_date") var date: DateTime) {
+  var anUser: User,
+  var comment: String,
+  var date: DateTime) {
+  
   @Id @GeneratedValue
   @Column(name = "id_comment")
-  var id: Long = _
+  var id: Int = _
+  
+  // Accessor's //
+  
+  def getId: Int = {
+    id
+  }
+  
+  def setId(anID: Int) {
+    id = anID
+  }
+  
+  @OneToOne(mappedBy = "id_user")
+  def getUser: User = {
+    anUser
+  }
+  
+  def setUser(user: User) {
+    anUser = user
+  }
+  
+  def getComment: String = {
+    comment
+  }
+  
+  def setComment(aComment: String) {
+    comment = aComment
+  }
+  
+  def getDate: DateTime = {
+    date
+  }
+  
+  def setDate(aDate: DateTime) {
+    date = aDate
+  }
 }

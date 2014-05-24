@@ -1,18 +1,47 @@
 package ar.edu.unq.desapp.model.bean
 
-import javax.persistence.{ GeneratedValue, Id, Entity }
-import reflect.BeanProperty
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
-
 @Entity
-@Table(name = "AUTHOR")
+@Table(name = "authors")
 class Author(var name: String) {
 
   @Id @GeneratedValue
-  var id: Long = _
+  var id: Int = _
 
-  @OneToMany(mappedBy = "id_book")
-  var writtenBooks: List[Book] = Nil
+  var writtenBooks: List[Book] = _
+  
+  // Accessor's //
+  
+  def getId: Int = {
+    id
+  }
+  
+  def setId(anID: Int) {
+    id = anID
+  }
+  
+  def getName: String = {
+    name
+  }
+  
+  def setName(aName: String) {
+    name = aName
+  }
+  
+  @OneToMany
+  def getWrittenBooks: java.util.List[Book] = {
+    writtenBooks.asJava.toList
+  }
+  
+  def setWrittenBooks(aWrittenBooks: java.util.List[Book]) {
+    writtenBooks = aWrittenBooks.asScala.toList
+  }
 }

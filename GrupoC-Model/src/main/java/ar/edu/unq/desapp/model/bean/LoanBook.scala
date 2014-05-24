@@ -6,17 +6,15 @@ import reflect.BeanProperty
 import javax.persistence._
 
 @Entity
-@Table(name = "LOAN_BOOK")
+@Table(name = "loan_books")
 class LoanBook(
-  @OneToOne(mappedBy = "id_user")
   var anUser: User,
-  @OneToOne(mappedBy = "id_book")
   var aBook: Book,
   var dateOfLoan: DateTime,
   var refundDate: DateTime) {
 
   @Id @GeneratedValue
-  var id: Long = _
+  var id: Int = _
 
   def isOutOfDate: Boolean = {
     dateOfLoan.isAfter(refundDate)
@@ -24,5 +22,49 @@ class LoanBook(
 
   def amountDaysBetweenLoanAndRefund: Int = {
     Days.daysBetween(dateOfLoan.withTimeAtStartOfDay(), refundDate.withTimeAtStartOfDay()).getDays()
+  }
+  
+  // Accessor's //
+  
+  def getId: Int = {
+    id
+  }
+  
+  def setId(anId: Int) {
+    id = anId
+  }
+  
+  @OneToOne(mappedBy = "id_user")
+  def getAnUser: User = {
+    anUser
+  }
+  
+  def setAnUser(user: User) {
+    anUser = user
+  }
+  
+  @OneToOne(mappedBy = "id_book")
+  def getABook: Book = {
+    aBook
+  }
+  
+  def setABook(book: Book) {
+    aBook = book
+  }
+  
+  def getDateOfLoan: DateTime = {
+    dateOfLoan
+  }
+  
+  def setDateOfLoan(anDate: DateTime) {
+    dateOfLoan = anDate
+  }
+  
+  def getRefundDate: DateTime = {
+    refundDate
+  }
+  
+  def setRefundDate(anDate: DateTime) {
+    refundDate = anDate
   }
 }

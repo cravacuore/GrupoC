@@ -5,7 +5,7 @@ import ar.edu.unq.desapp.model.management.LibrarySystem
 import javax.persistence._
 
 @Entity
-@Table(name = "LIBRARIAN")
+@Table
 @PrimaryKeyJoinColumn(name = "id_user")
 class Librarian(username: String, email: String, password: String, @Transient val librarySystem: LibrarySystem)
   extends User(username, email, password) {
