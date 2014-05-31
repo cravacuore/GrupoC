@@ -2,8 +2,9 @@ package ar.edu.unq.desapp.services
 
 import org.springframework.transaction.annotation.Transactional
 import ar.edu.unq.desapp.repository.generic.GenericRepository
+import org.springframework.beans.factory.annotation.Autowired
 
-class GenericService[T]() extends Serializable {
+class GenericService[T] extends Serializable {
 
   private val serialVersionUID: Long = -6540963495078524186L
 
@@ -33,8 +34,9 @@ class GenericService[T]() extends Serializable {
   def deleteById(id: Serializable) {
     this.repository.deleteById(id)
   }
-  //  @Transactional
-  //  def retriveAll: List[T] = {
-  //    this.repository.findAll;
-  //  }
+
+  @Transactional
+  def retriveAll: List[T] = {
+    this.repository.findAll;
+  }
 }

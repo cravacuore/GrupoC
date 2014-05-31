@@ -19,5 +19,9 @@
 	<bean id="services.book" class="ar.edu.unq.desapp.services.bean.Book">
 		<property name="bookService" ref="services.book" />
 	</bean>
+	
+	<bean id="services.author" class="ar.edu.unq.desapp.services.bean.Author">
+		<property name="authorService" ref="services.author" />
+	</bean>
 
 </beans>

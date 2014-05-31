@@ -7,8 +7,6 @@ import org.hibernate.Criteria
 import org.hibernate.criterion.Projections
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport
 
-import ar.edu.unq.desapp.model.bean.User
-
 abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRepository[T] with Serializable {
 
   private val serialVersionUID: Long = 5058950102420892922L
@@ -32,7 +30,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
 
   override def count: Int = {
     var criteria: Criteria = this.getSession().createCriteria(this.persistentClass)
-    criteria.setProjection(Projections.rowCount()).list().get(0).asInstanceOf[Int].intValue()
+    (criteria.setProjection(Projections.rowCount()).list().get(0)).asInstanceOf[java.lang.Long].intValue()
   }
 
   override def delete(entity: T) {
