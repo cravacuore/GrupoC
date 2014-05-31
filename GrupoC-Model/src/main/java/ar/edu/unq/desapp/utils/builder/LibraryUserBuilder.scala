@@ -1,9 +1,13 @@
 package ar.edu.unq.desapp.utils.builder
 
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.model.bean.User
 import ar.edu.unq.desapp.model.management.LibrarySystem
 import ar.edu.unq.desapp.model.bean.Librarian
+
 
 abstract class LibraryUserBuilder[T <: LibraryUserBuilder[T, U], U] extends BuilderToTest[U] {
 
@@ -53,7 +57,7 @@ class LibrarianBuilder(var librarySystem: LibrarySystem) extends LibraryUserBuil
   }
 
   def build: Librarian = {
-    val librarian = new Librarian(this.name, this.email, this.password, this.librarySystem)
+    val librarian = new Librarian(this.name, this.email, this.password)
     librarian.borrowedBooks = this.borrowedBooks
     librarian
   }

@@ -6,12 +6,15 @@ import org.joda.time.DateTime
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.model.bean.Author
 
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+
 class BookBuilder extends BuilderToTest[Book] {
 
   var title: String = "no title"
   var isbn: String = "no isbn"
   var editorial: String = "no editorial"
-  var image: Image = new BufferedImage(1, 1, 1)
+  var image: String = "no picture"
   var description: String = "no description"
   var authors: List[Author] = Nil
   var amount: Int = 1 //DEFAULT!!!!
@@ -32,7 +35,7 @@ class BookBuilder extends BuilderToTest[Book] {
     this
   }
 
-  def withImage(anImage: Image): BookBuilder = {
+  def withImage(anImage: String): BookBuilder = {
     this.image = anImage
     this
   }
@@ -58,13 +61,15 @@ class BookBuilder extends BuilderToTest[Book] {
   }
 
   def build: Book = {
-    new Book(
+    var book = new Book(
       this.title,
       this.isbn,
       this.editorial,
       this.image,
       this.description,
-      this.authors,
       this.amount)
+    
+    book.authors = this.authors
+    book
   }
 }

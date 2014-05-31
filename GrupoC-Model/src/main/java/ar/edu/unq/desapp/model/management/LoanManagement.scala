@@ -30,7 +30,9 @@ class LoanManagement(val notificationSystem: NotificationSystem, private val loa
       aBook.amount -= 1
 
       val refundDate = new DateTime().plusDays(loanConf.maxDaysOfLoan)
-      val loanBook = new LoanBook(anUser, aBook, new DateTime, refundDate)
+      val loanBook = new LoanBook(new DateTime, refundDate)
+      loanBook.user = anUser
+      loanBook.book = aBook
       borrowedBooks = (loanBook) :: borrowedBooks
 
       anUser.borrowBook(aBook)

@@ -4,22 +4,30 @@ import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 
 import javax.persistence._
+import beans.BeanProperty
 
 @Entity
 @Table(name = "users")
 @Inheritance(strategy=InheritanceType.JOINED)
 class User (
+  @BeanProperty
   var username: String,
+  @BeanProperty
   var email: String,
+  @BeanProperty
   var password: String) {
  
   @Id @GeneratedValue
   var id: Int = _
 
-  var borrowedBooks: List[Book] = Nil
+  @BeanProperty
+  @OneToMany
+  var borrowedBooks: java.util.List[Book] = _
 
+  private def this() = this(null, null, null)
+  
   def borrowBook(aBook: Book) {
-    borrowedBooks = aBook :: borrowedBooks
+    borrowedBooks = aBook :: borrowedBooks.asScala.toList
   }
 
   def returnBook(aBook: Book) {
@@ -29,47 +37,5 @@ class User (
 
   def commentBook(aBook: Book, aComment: String) {
     aBook.addComment(this, aComment)
-  }
-  
-  // Accessor's //
-  
-  def getId: Int = {
-    id
-  }
-  
-  def setId(anId: Int) { 
-    id = anId
-  }
-  
-  def getUsername: String = {
-    username
-  }
-  
-  def setUsername(anUsername: String) {
-    username = anUsername
-  }
-  
-  def getEmail: String = {
-    email
-  }
-  
-  def setEmail(anEmail: String) {
-    email = anEmail
-  }
-  
-  def getPassword: String = {
-    password
-  }
-  
-  def setPassword(aPassword: String) {
-    password = aPassword
-  }
-  
-  def getBorrowedBooks: java.util.List[Book] = {
-    borrowedBooks.asJava.toList
-  }
-  
-  def setBorrowedBooks(bb: java.util.List[Book]) {
-    borrowedBooks = bb.asScala.toList
   }
 }

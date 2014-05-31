@@ -1,121 +1,57 @@
 package ar.edu.unq.desapp.model.bean
 
-import java.awt.Image
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
+import java.util.ArrayList
+
+import scala.beans.BeanProperty
+import scala.collection.JavaConversions.seqAsJavaList
+import scala.collection.JavaConverters.asScalaBufferConverter
+
 import org.joda.time.DateTime
+
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.Inheritance
-import javax.persistence.Table
 import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
+import javax.persistence.Table
 
-@Entity
-@Table(name = "books")
+@Entity @Table(name = "books")
 class Book (
+  @BeanProperty
   var title: String,
+  @BeanProperty
   var isbn: String,
+  @BeanProperty
   var editorial: String,
-  var image: Image,
+  @BeanProperty
+  var image: String,
+  @BeanProperty
   var description: String,
-  var authors: List[Author],
-  var amount: Int = 1 ,
+  @BeanProperty
+  var amount: Int = 1,
+  @BeanProperty
   var registrationDate: DateTime = new DateTime
 ){
 
   private val serialVersionUID: Long = 1L
 
-  @Id @GeneratedValue
+  @Id @GeneratedValue 
+  @Column(name = "id_book")
   var id: Int = _
 
-  var comment: List[Comment] = Nil
+  @OneToMany @BeanProperty
+  var comment: java.util.List[Comment] = new ArrayList[Comment]
 
+  @ManyToMany @BeanProperty
+  var authors: java.util.List[Author] = new ArrayList[Author]
+
+  private def this() = this(null, null, null, null, null)
+  
   def addComment(anUser: User, comment: String) {
-    val aComment = new Comment(anUser, comment, new DateTime)
-    this.comment = aComment :: this.comment
-  }
-
-  // Accessor's //
-  
-  def getId: Int = {
-    id
-  }
-  
-  def setId(id: Int) {
-    this.id = id
-  }
-  
-  def getTitle: String = {
-    title
-  }
-  
-  def setTitle(aTitle: String) {
-    title = aTitle
-  }
-  
-  def getIsbn: String = {
-    isbn
-  }
-  
-  def setIsbn(anIsbn: String) {
-    isbn = anIsbn
-  }
-  
-  def getEditorial: String = {
-    editorial
-  }
-  
-  def setEditorial(anEditorial: String) {
-    editorial = anEditorial
-  }
-  
-  def getImage: Image = {
-    image
-  }
-  
-  def setImage(anImage: Image) {
-    image = anImage
-  }
-  
-  def getDescription: String = {
-    description
-  }
-  
-  def setDescription(aDescription: String) {
-    description = aDescription
-  }
-  
-  @ManyToMany
-  def getAuthors: java.util.List[Author] = {
-    authors.asJava.toList
-  }
-  
-  def setAuthors(anAuthors: java.util.List[Author]) {
-    authors = anAuthors.asScala.toList
-  }
-  
-  def getAmount: Int = {
-    amount
-  }
-  
-  def setAmount(anAmount: Int) {
-    amount = anAmount
-  }
-  
-  def getRegistrationDate: DateTime = {
-    registrationDate
-  }
-  
-  def setRegistrationDate(date: DateTime) {
-    registrationDate = date
-  }
-  
-  def getComment: java.util.List[Comment] = {
-    comment.asJava.toList
-  }
-  
-  def setComment(comments: java.util.List[Comment]) {
-    comment = comments.asScala.toList
+    val aComment = new Comment(comment, new DateTime)
+    aComment.user = anUser
+    this.comment = aComment :: this.comment.asScala.toList
   }
 }

@@ -1,70 +1,41 @@
 package ar.edu.unq.desapp.model.bean
 
+import scala.beans.BeanProperty
+
 import org.joda.time.DateTime
 import org.joda.time.Days
-import reflect.BeanProperty
-import javax.persistence._
 
-@Entity
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Inheritance
+import javax.persistence.OneToOne
+import javax.persistence.Table
+
+@Entity 
 @Table(name = "loan_books")
 class LoanBook(
-  var anUser: User,
-  var aBook: Book,
+  @BeanProperty
   var dateOfLoan: DateTime,
+  @BeanProperty
   var refundDate: DateTime) {
 
   @Id @GeneratedValue
   var id: Int = _
 
+  @OneToOne @BeanProperty
+  var book: Book = _
+  
+  @OneToOne @BeanProperty
+  var user: User = _
+  
+  private def this() = this(null, null)
+  
   def isOutOfDate: Boolean = {
     dateOfLoan.isAfter(refundDate)
   }
 
   def amountDaysBetweenLoanAndRefund: Int = {
     Days.daysBetween(dateOfLoan.withTimeAtStartOfDay(), refundDate.withTimeAtStartOfDay()).getDays()
-  }
-  
-  // Accessor's //
-  
-  def getId: Int = {
-    id
-  }
-  
-  def setId(anId: Int) {
-    id = anId
-  }
-  
-  @OneToOne(mappedBy = "id_user")
-  def getAnUser: User = {
-    anUser
-  }
-  
-  def setAnUser(user: User) {
-    anUser = user
-  }
-  
-  @OneToOne(mappedBy = "id_book")
-  def getABook: Book = {
-    aBook
-  }
-  
-  def setABook(book: Book) {
-    aBook = book
-  }
-  
-  def getDateOfLoan: DateTime = {
-    dateOfLoan
-  }
-  
-  def setDateOfLoan(anDate: DateTime) {
-    dateOfLoan = anDate
-  }
-  
-  def getRefundDate: DateTime = {
-    refundDate
-  }
-  
-  def setRefundDate(anDate: DateTime) {
-    refundDate = anDate
   }
 }
