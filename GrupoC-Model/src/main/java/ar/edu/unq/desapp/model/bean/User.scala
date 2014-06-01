@@ -21,6 +21,9 @@ class User (
   var id: Int = _
 
   @BeanProperty
+  var rols: List[String] = _
+  
+  @BeanProperty
   @OneToMany
   var borrowedBooks: java.util.List[Book] = _
 
