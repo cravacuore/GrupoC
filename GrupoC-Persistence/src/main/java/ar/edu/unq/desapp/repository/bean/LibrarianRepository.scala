@@ -8,9 +8,7 @@ import scala.collection.JavaConverters._
 
 class LibrarianRepository extends HibernateGenericDAO[Librarian] {
 
-  private val serialVersionUID: Long = -854399694634099004L;
-
-  override def getDomainClass: Class[Librarian] = {
-    classOf[Librarian]
-  }
+  private val serialVersionUID: Long = -854399694634099004L
+  
+  persistentClass = classOf[Librarian]
 }

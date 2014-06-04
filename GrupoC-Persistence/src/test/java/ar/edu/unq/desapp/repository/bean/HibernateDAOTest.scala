@@ -139,7 +139,5 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     		 			'description("Write by Herman Melville"), 
     		 			'isbn("isbn-0123"))
     }
-
-    
   }
 }

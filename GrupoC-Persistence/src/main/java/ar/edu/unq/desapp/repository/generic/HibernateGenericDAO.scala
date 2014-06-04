@@ -7,13 +7,12 @@ import org.hibernate.Criteria
 import org.hibernate.criterion.Projections
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport
 
-abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRepository[T] with Serializable {
+class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRepository[T] with Serializable {
 
   private val serialVersionUID: Long = 5058950102420892922L
-  implicit protected var persistentClass: Class[T] = this.getDomainClass
-
-  protected def getDomainClass: Class[T]
-
+  
+  protected var persistentClass: Class[T] = _
+  
   override def save(entity: T) {
     this.getHibernateTemplate.save(entity)
     this.getHibernateTemplate.flush()
@@ -24,7 +23,7 @@ abstract class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRe
   }
 
   override def findAll: List[T] = {
-    this.getHibernateTemplate().loadAll(this.getDomainClass)
+    this.getHibernateTemplate().loadAll(this.persistentClass)
       .asInstanceOf[java.util.List[T]].toList
   }
 

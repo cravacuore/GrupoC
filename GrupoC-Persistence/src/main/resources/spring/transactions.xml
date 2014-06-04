@@ -12,9 +12,6 @@
 	<context:annotation-config />
 	<!-- Auto scan the components -->
 	<context:component-scan base-package="ar.edu.unq.desapp.repository.bean" />
-<!-- 	<context:component-scan base-package="persistence.repository.meansofpayment" /> -->
-<!-- 	<context:component-scan base-package="persistence.repository.promotion" /> -->
-<!-- 	<context:component-scan base-package="persistence.repository.purchase" /> -->
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 

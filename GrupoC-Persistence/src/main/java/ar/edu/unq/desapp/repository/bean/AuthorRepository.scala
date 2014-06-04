@@ -9,8 +9,6 @@ import scala.collection.JavaConverters._
 class AuthorRepository extends HibernateGenericDAO[Author] {
 
   private val serialVersionUID: Long = -8543996946304099004L;
-
-  override def getDomainClass: Class[Author] = {
-    classOf[Author]
-  }
+  
+  persistentClass = classOf[Author]
 }
