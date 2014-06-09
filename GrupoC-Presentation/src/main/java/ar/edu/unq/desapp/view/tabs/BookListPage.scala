@@ -8,46 +8,54 @@ import org.apache.wicket.markup.html.list.ListItem
 import org.apache.wicket.markup.html.list.PropertyListView
 import org.apache.wicket.markup.html.panel.Panel
 import org.apache.wicket.model.CompoundPropertyModel
-
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.services.GeneralService
 import ar.edu.unq.desapp.services.bean.BookService
 import ar.edu.unq.desapp.utils.builder.BookBuilder
-
 import ar.edu.unq.desapp.appModel.BookListAppModel
+import org.apache.wicket.markup.html.list.PageableListView
+import ar.edu.unq.desapp.view.model.BasePage
+import org.apache.wicket.markup.html.link.BookmarkablePageLink
+import ar.edu.unq.desapp.view.model.BookDetailsPage
+import ar.edu.unq.desapp.view.model.BookDetailsPage
+import org.apache.wicket.request.mapper.parameter.PageParameters
 
 //@SerialVersionUID(33415151324214142l)
-class BookListPanel(var idPanel: String) extends Panel(idPanel) {
+class BookListPage extends BasePage {
 
-	override def onInitialize(){
+	override def onInitialize {
 		super.onInitialize
-		val bookListAppModel = new BookListAppModel()
-		val form = new Form[BookListAppModel](
-		    "appModelForm",
+		val bookListAppModel = new BookListAppModel
+		val form = new Form[BookListAppModel]("bookListForm",
 		    new CompoundPropertyModel[BookListAppModel](bookListAppModel)
 		)
-	  
-		// addBookTable(form)
-		
+//		add(new Label("title", "Book Details Page"))
+		addBookTable(form)
 		add(form)
 	}
 
 	// Adds table book items
 	def addBookTable(form: Form[BookListAppModel]) {
 		val books =
+		  // new PageableListView
 			new PropertyListView[Book]("books") {
 		  	override def populateItem(item: ListItem[Book]) = 
 		    	item.add(
-		      		new Label("title"),
-		      		new Label("isbn"),
-		      		new Label("date")
+		      		new Button("title") { def onClick { detailsPage(item.getModelObject()) }}, //TODO - Refactor
+		      		new Label("isbn")
+//		      		new Label("registrationDate")
 		      	)
 			}
 		form.add(books)
 	}
+	
+	//TODO - Refactor
+	def detailsPage(book: Book){
+	  new BookmarkablePageLink("title", classOf[BookDetailsPage], new PageParameters().add("book", book))
+	}
 
-//  var bookEmtpy: Book = new BookBuilder().build
-//  var form: Form[Book] = new Form[Book]("bookForm", new CompoundPropertyModel[Book](this.bookEmtpy))
+//  var emptyBook: Book = new BookBuilder().build
+//  var form: Form[Book] = new Form[Book]("bookForm", new CompoundPropertyModel[Book](this.emptyBook))
 //  
 //  override def onInitialize() {
 //    super.onInitialize

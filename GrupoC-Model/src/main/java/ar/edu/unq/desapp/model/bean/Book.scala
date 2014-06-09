@@ -11,7 +11,7 @@ class Book(
   var title: String,
   var isbn: String,
   var editorial: String,
-  var image: Image,
+  var imageUrl: String,
   var description: String,
   var authors: List[Author],
   var amount: Int = 1 ,

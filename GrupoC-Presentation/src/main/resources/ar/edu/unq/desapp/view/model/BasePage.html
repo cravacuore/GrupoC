@@ -1,0 +1,42 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<br />
+	<div class="container page-header">
+		<div style="float: left">
+			<a id="linkToHomePage" wicket:id="linkToHomePage">
+				<img src="../libraryIcon.png" class="img-polaroid">
+			</a>
+		</div>
+
+		<div style="float: left">
+			<h2><wicket:message key="appTitle">Library System</wicket:message></h2>
+			<p><wicket:message key="subtitle">appSubtitle</wicket:message></p>
+		</div>
+	</div>
+
+	<div class="container">
+		<br />
+		<div style="float: right">
+			<button class="btn btn-default"><a href="j_spring_security_logout">Logout</a></button>
+		</div>
+		<ul class="nav nav-tabs">
+			<!-- Navigation -->
+			<li><a wicket:id="BookList">Book List</a></li>
+		    <li><a wicket:id="RankingBorrowedBook">Ranking Borrowed Book</a></li>
+		    <li><a wicket:id="AddBook">Add Book</a></li>
+	    </ul>
+    </div>
+		
+	<div class="container">
+		<!-- Content -->
+		<div class="content">
+			<wicket:child />
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<br />
+	<br />
+	<div class="container footer">
+		<wicket:message key="powered">Powered-by</wicket:message>
+	</div>
+</wicket:extend>

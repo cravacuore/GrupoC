@@ -5,13 +5,13 @@ import org.apache.wicket.markup.html.list.ListItem
 import org.apache.wicket.markup.html.list.PropertyListView
 import org.apache.wicket.markup.html.panel.Panel
 import org.apache.wicket.model.CompoundPropertyModel
-
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.services.bean.BookService
 import ar.edu.unq.desapp.utils.DSLWicket
+import ar.edu.unq.desapp.view.model.BasePage
 
 //@SerialVersionUID(123412341234L)
-class RankingBorrowedBookPanel(var idPanel: String) extends Panel(idPanel) {
+class RankingBorrowedBookPage extends BasePage {
   
 //  val form = new Form[BookService]("BookServiceForm", new CompoundPropertyModel[BookService](service))
 //  

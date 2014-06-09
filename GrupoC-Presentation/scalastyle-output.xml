@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="5.0">
- <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/tabs/RankingBorrowedBookPanel.scala">
-  <error column="6" line="14" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/tabs/BookListPage.scala">
+  <error column="18" line="41" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/LoginPage.scala">
+  <error column="9" line="19" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
  </file>
  <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/MounterURL.scala">
   <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
  </file>
- <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/Home.scala">
-  <error column="23" line="23" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/HeadBlankPage.scala">
+  <error column="15" line="7" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/BookDetailsPage.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/tabs/RankingBorrowedBookPage.scala">
+  <error column="6" line="14" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
  </file>
  <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/utils/DSLWicket.scala">
   <error line="8" source="org.scalastyle.file.FileLineLengthChecker" severity="warning" message="File line length exceeds 160 characters"></error>
@@ -47,8 +56,10 @@
   <error column="10" line="184" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
   <error column="8" line="195" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
  </file>
- <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/tabs/BookListPanel.scala">
-  <error column="5" line="33" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
-  <error column="17" line="36" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/AddEditBookPage.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+ </file>
+ <file name="/home/raw/Unq/DesApp/GrupoC/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/HomePage.scala">
+  <error column="6" line="15" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
  </file>
 </checkstyle>

@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 
-	<bean id="wicketApplication" class="ar.edu.unq.desapp.view.model.MyApplication">
+	<bean id="wicketApplication" class="ar.edu.unq.desapp.view.model.HomeApplication">
 		<property name="generalService" ref="services.general"></property>
 	</bean>
 

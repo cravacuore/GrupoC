@@ -4,5 +4,5 @@ import org.apache.wicket.protocol.http.WebApplication
 
 class HomeApplication extends WebApplication {
   
-	override def getHomePage: Class[Home] = classOf[Home]
+	override def getHomePage: Class[HomePage] = classOf[HomePage]
 }

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.view.model
+package ar.edu.unq.desapp.view.security
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession
 import org.apache.wicket.authroles.authorization.strategies.role.Roles

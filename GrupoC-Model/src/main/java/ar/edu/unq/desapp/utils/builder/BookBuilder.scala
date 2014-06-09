@@ -11,7 +11,7 @@ class BookBuilder extends BuilderToTest[Book] {
   var title: String = "no title"
   var isbn: String = "no isbn"
   var editorial: String = "no editorial"
-  var image: Image = new BufferedImage(1, 1, 1)
+  var image: String = "this must be an Image-URL"
   var description: String = "no description"
   var authors: List[Author] = Nil
   var amount: Int = 1 //DEFAULT!!!!
@@ -32,8 +32,8 @@ class BookBuilder extends BuilderToTest[Book] {
     this
   }
 
-  def withImage(anImage: Image): BookBuilder = {
-    this.image = anImage
+  def withImage(anImageUrl: String): BookBuilder = {
+    this.image = anImageUrl
     this
   }
 
