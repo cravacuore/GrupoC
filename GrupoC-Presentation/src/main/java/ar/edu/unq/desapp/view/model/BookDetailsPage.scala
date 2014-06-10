@@ -1,15 +1,13 @@
 package ar.edu.unq.desapp.view.model
 
 import org.apache.wicket.markup.html.basic.Label
-import ar.edu.unq.desapp.model.bean.Book
-import org.apache.wicket.markup.html.form.Form
-import ar.edu.unq.desapp.appModel.AddEditBook
-import org.apache.wicket.markup.html.panel.FeedbackPanel
-import org.apache.wicket.markup.html.form.TextField
 import org.apache.wicket.markup.html.form.Button
+import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.image.Image
-import ar.edu.unq.desapp.appModel.BookDetails
 import org.apache.wicket.model.CompoundPropertyModel
+
+import ar.edu.unq.desapp.appModel.BookDetails
+import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.view.tabs.BookListPage
 
 class BookDetailsPage extends HeadBlankPage {
@@ -21,7 +19,6 @@ class BookDetailsPage extends HeadBlankPage {
  	override def onInitialize {
  	  	super.onInitialize
  	  	
- 	  	//TODO - Refactor
  	  	if (this.book == null) this.book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description",Nil)
  		val bookForm = new Form[BookDetails]("bookForm", new CompoundPropertyModel(this.bookDetails))
 		
@@ -31,20 +28,20 @@ class BookDetailsPage extends HeadBlankPage {
  		add(bookForm)
  	}
 	
- 	def addActions(parent: Form[BookDetails]){
+ 	private def addActions(parent: Form[BookDetails]){
  		parent.add(new Button("addComment") { def onClick { commentPage() }})
  		parent.add(new Button("back") {	def onClick { backPage() }})
  	}
 	
- 	def commentPage() {
+ 	private def commentPage() {
 // 		this.setResponsePage(new CommentPage(book))
  	}
  	
- 	def backPage() {
+ 	private def backPage() {
  		this.setResponsePage(mainPage)
  	}
 	
- 	def addLabels(parent: Form[BookDetails]) {
+ 	private def addLabels(parent: Form[BookDetails]) {
  		parent.add(new Label("book.title"))
  		parent.add(new Label("book.isbn"))
  		parent.add(new Label("book.editorial"))
@@ -52,7 +49,7 @@ class BookDetailsPage extends HeadBlankPage {
 // 		parent.add(new FeedbackPanel("feedbackPanel"))
  	}
  	
- 	def addImage(parent: Form[BookDetails]) {
- 		parent.add(new Image("cover", "url"))
+ 	private def addImage(parent: Form[BookDetails]) {
+ 		parent.add(new Image("cover", "../library.png"))
  	}
 }

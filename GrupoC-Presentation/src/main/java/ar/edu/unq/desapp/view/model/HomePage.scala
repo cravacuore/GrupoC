@@ -11,5 +11,4 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPage
 import ar.edu.unq.desapp.view.tabs.BookListPage
 
-@SerialVersionUID(9798132401L)
 class HomePage extends BasePage {}
