@@ -44,7 +44,7 @@ class Book (
   @OneToMany @BeanProperty
   var comment: java.util.List[Comment] = new ArrayList[Comment]
 
-  @ManyToMany @BeanProperty
+  @OneToMany @BeanProperty
   var authors: java.util.List[Author] = new ArrayList[Author]
 
   private def this() = this(null, null, null, null, null)

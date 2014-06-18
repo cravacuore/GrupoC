@@ -21,7 +21,8 @@ class User (
   var id: Int = _
 
   @BeanProperty
-  var rols: List[String] = _
+  @ElementCollection
+  var rols: java.util.List[String] = _
   
   @BeanProperty
   @OneToMany
@@ -30,7 +31,7 @@ class User (
   private def this() = this(null, null, null)
   
   def borrowBook(aBook: Book) {
-    borrowedBooks = aBook :: borrowedBooks.asScala.toList
+    borrowedBooks = aBook :: borrowedBooks.toList
   }
 
   def returnBook(aBook: Book) {

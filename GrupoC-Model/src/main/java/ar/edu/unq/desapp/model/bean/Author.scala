@@ -20,8 +20,7 @@ class Author(@BeanProperty var name: String) {
   @Id @GeneratedValue
   var id: Int = _
   
-  @OneToMany(mappedBy = "authors")
-  @BeanProperty
+  @OneToMany @BeanProperty
   var writtenBooks: java.util.List[Book] = new ArrayList[Book]
   
   private def this() = this(null)
