@@ -1,0 +1,17 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<form wicket:id="bookForm">
+		<br />
+		<h1 wicket:id="book.title">aTitle</h1>
+		<br />
+		<img wicket:id="cover" width="128" src="" /><br />
+		<span wicket:id="book.isbn" /><br />
+		<!-- <span wicket:id="authors" /> -->
+		<span wicket:id="book.description" /><br />
+		<span wicket:id="book.editorial" /><br />
+
+	<div id="actions">
+		<button wicket:id="addComment" class="btn btn-primary">Add Comment</button>
+		<button wicket:id="back" class="btn btn-link">Back</button>
+	</div>
+	</form>
+</wicket:extend>
