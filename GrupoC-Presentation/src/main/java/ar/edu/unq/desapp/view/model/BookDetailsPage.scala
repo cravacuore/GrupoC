@@ -12,7 +12,7 @@ import ar.edu.unq.desapp.view.tabs.BookListPage
 
 class BookDetailsPage extends HeadBlankPage {
 
-	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description",Nil) 
+	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description",Nil) // TODO - get book as parameter
    	var mainPage: BookListPage = new BookListPage
  	var bookDetails: BookDetails = new BookDetails(book)
    	

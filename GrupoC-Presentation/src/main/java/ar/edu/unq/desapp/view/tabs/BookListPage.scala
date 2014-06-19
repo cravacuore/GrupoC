@@ -33,12 +33,12 @@ class BookListPage extends BasePage {
 		  
 		  // TODO - PageableListView
 			new ListView[Book]("books") {
-		  	override def populateItem(item: ListItem[Book]) = 
-		    	item.add(
-		      		new Button("title") { def onClick { detailsPage(item.getModelObject()) }},
-		      		new Label("isbn")
-//		      		new Label("registrationDate")
-		      	)
+			  	override def populateItem(item: ListItem[Book]) = 
+			    	item.add(
+			      		new Button("title") { def onClick { detailsPage(item.getModelObject()) }}
+			      		// new Label("isbn")
+	//		      		new Label("registrationDate")
+			      	)
 			}
 		form.add(books)
 	}
