@@ -1,6 +1,6 @@
 package ar.edu.unq.desapp.model.bean
 
-import reflect.BeanProperty
+import java.util
 import javax.persistence._
 
 @Entity
