@@ -31,4 +31,16 @@ class BookListAppModel extends Serializable with Builder {
   books.add(
     aBook.build
   )
+
+  def isAvailable(aBook: Book): String = {
+    if(aBook.amount > 3) "Available" else "Not available" // TODO - aBook.reservations -> get this through Service?
+  }
+
+  def getReservationsAmount(aBook: Book): Int = {
+    1 // Service.getAmount(aBook) // TODO - Use service to get needed info
+  }
+
+  def deleteBook(aBook: Book) {
+    // TODO - Service.deleteBook(aBook)
+  }
 }

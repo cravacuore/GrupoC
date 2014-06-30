@@ -5,7 +5,7 @@ import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.view.model.{BasePage, BookDetailsPage}
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.BootstrapPagingNavigator
 import org.apache.wicket.markup.html.basic.Label
-import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.{Button, Form}
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.html.list.{ListItem, PageableListView}
 import org.apache.wicket.model.CompoundPropertyModel
@@ -29,21 +29,20 @@ class BookListPage extends BasePage {
 			new PageableListView[Book]("books", form.getModelObject.books, 5) {
 			  	override def populateItem(book: ListItem[Book]) =
 			    	book.add(
+            //Data - items for each book on the list
                 new Label("title", book.getModelObject.title),
                 new Label("isbn", book.getModelObject.isbn),
 	              new Label("registrationDate", book.getModelObject.registrationDate.toDate),
-                new BookmarkablePageLink("details", classOf[BookDetailsPage], new PageParameters().add("book", book.getModelObject))
-//                new Label("reservation", book.getModelObject.reservations),
-//                new Label("state")
-			      	)
+                new Label("reservation", form.getModelObject.getReservationsAmount(book.getModelObject)),
+                new Label("state", form.getModelObject.isAvailable(book.getModelObject)),
+            //Actions
+                new BookmarkablePageLink("details", classOf[BookDetailsPage], new PageParameters().add("book", book.getModelObject)),
+                new Button("delete") { def onClick() { form.getModelObject.deleteBook(book.getModelObject)}	}
+            )
 			}
+    // Pagination nav
     form.add(new BootstrapPagingNavigator("navigator", books))
+    // Add table
 		form.add(books)
 	}
-
-	//######################### Para el borrado desde la misma lista ########################
-	//      override def onSubmit {
-	//        ManageBookPanel.this.services.delete(form.getModelObject())
-	//      }
-	//#######################################################################################
 }
