@@ -65,4 +65,3 @@
  		parent.add(new FeedbackPanel("feedbackPanel"))
  	}
  }
- 
