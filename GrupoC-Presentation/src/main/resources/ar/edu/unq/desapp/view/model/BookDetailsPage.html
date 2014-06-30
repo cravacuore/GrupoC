@@ -4,14 +4,34 @@
 		<h1 wicket:id="book.title">aTitle</h1>
 		<br />
 		<img wicket:id="cover" width="128" src="" /><br />
-		<span wicket:id="book.isbn" /><br />
-		<!-- <span wicket:id="authors" /> -->
-		<span wicket:id="book.description" /><br />
-		<span wicket:id="book.editorial" /><br />
 
-	<div id="actions">
-		<button wicket:id="addComment" class="btn btn-primary">Add Comment</button>
-		<button wicket:id="back" class="btn btn-link">Back</button>
-	</div>
+		<!--<span wicket:id="book.isbn" /><br />
+		&lt;!&ndash; <span wicket:id="authors" /> &ndash;&gt;
+		<span wicket:id="book.description" /><br />
+		<span wicket:id="book.editorial" /><br />-->
+
+        <table class="table">
+            <tr>
+                <td><wicket:message key="isbn">Isbn</wicket:message></td><td wicket:id="book.isbn" />
+            </tr>
+<!--            <tr>
+                <td>Authors</td><td wicket:id="book.authors" />
+            </tr>-->
+            <tr>
+                <td><wicket:message key="description">Description</wicket:message></td><td wicket:id="book.description" />
+            </tr>
+            <tr>
+                <td><wicket:message key="editorial">Editorial</wicket:message></td><td wicket:id="book.editorial" />
+            </tr>
+        </table>
+
+        <!-- TODO - Add comments of the book and similar books recommended -->
+
+        <div id="actions">
+            <button wicket:id="addComment" class="btn btn-primary">
+                <wicket:message key="addComment">Add Comment</wicket:message></button>
+            <button wicket:id="back" class="btn btn-link">
+                <wicket:message key="backButton">Back</wicket:message></button>
+        </div>
 	</form>
 </wicket:extend>
