@@ -15,7 +15,7 @@ class BooksApiServer {
   //      .asString
   //  }
 
-  def getBook(isbn: String = "9589760457") = {
+  def getBook(isbn: String = "9589760457"): String = {
 
     val apiUrl = "https://www.googleapis.com/books/v1/volumes/"
     val apiKey = "&key=AIzaSyBjabeSyJz1GuxqRLBI9S434upZLfkC35I"
