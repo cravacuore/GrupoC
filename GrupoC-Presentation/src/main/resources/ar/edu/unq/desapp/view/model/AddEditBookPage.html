@@ -11,34 +11,54 @@
         <form wicket:id="bookForm" class="form">
         	<fieldset>
         	
-        	<!-- TODO - add image, authors, amount -->
+        	<!-- TODO - add amount (Maybe) -->
         	<div class="form-group">
 	        	<label class="control-label" for="book.title">Title</label>
 	        	<div class="controls">
-	        		<input wicket:id="book.title" type="text" placeholder="Viaje al centro de la tierra" class="form-control" />
+	        		<input wicket:id="book.title" type="text"
+                           placeholder="Viaje al centro de la tierra" class="form-control" />
 	        	</div>
         	</div>
         	
         	<div class="form-group">
 	        	<label class="control-label" for="book.isbn">Isbn</label>
 	        	<div class="controls">
-	        		<input wicket:id="book.isbn" type="text" placeholder="IB-172TG34" class="form-control" />
+	        		<input wicket:id="book.isbn" type="text"
+                           placeholder="IB-172TG34" class="form-control" />
 	        	</div>
         	</div>
         	
         	<div class="form-group">
     			<label class="control-label" for="book.editorial">Editorial</label>
     			<div class="controls">
-    				<input wicket:id="book.editorial" type="text" placeholder="Pepitos editorial" class="form-control"/>
+    				<input wicket:id="book.editorial" type="text"
+                           placeholder="Pepitos editorial" class="form-control"/>
     	    	</div>
         	</div>
+
+            <div class="form-group">
+                <label class="control-label" for="book.imageUrl">Image Url</label>
+                <div class="controls">
+                    <input wicket:id="book.imageUrl" type="text"
+                           placeholder="http://goo.gl/UQDZMU" class="form-control" />
+                </div>
+            </div>
         	
         	<div class="form-group">
     			<label class="control-label" for="book.description">Description</label>
     			<div class="controls">
-    				<input wicket:id="book.description" type="text" placeholder="This is a description" class="form-control"/>
+    				<textarea rows="3" wicket:id="book.description" type="text"
+                              placeholder="This is a description" class="form-control" />
     	    	</div>
         	</div>
+
+            <div class="form-group">
+                <label class="control-label" for="book.authors">Authors</label>
+                <div class="controls">
+                    <input wicket:id="book.authors" type="text"
+                           placeholder="Julio Verne" class="form-control" />
+                </div>
+            </div>
         	
             <div wicket:id="feedbackPanel" class="alert alert-error">
 					<strong>Warning!</strong> Best check yo self, you're not looking too good.  

@@ -1,9 +1,7 @@
  package ar.edu.unq.desapp.view.model
  
  import org.apache.wicket.markup.html.basic.Label
- import org.apache.wicket.markup.html.form.Button
- import org.apache.wicket.markup.html.form.Form
- import org.apache.wicket.markup.html.form.TextField
+ import org.apache.wicket.markup.html.form.{TextArea, Button, Form, TextField}
  import org.apache.wicket.markup.html.panel.FeedbackPanel
  import org.apache.wicket.model.CompoundPropertyModel
 
@@ -27,7 +25,7 @@
 	
  	private def addActions(parent: Form[AddEditBook]){
  		parent.add(new Button("accept") {
- 			def onClick {
+ 			def onClick() {
  	//################################## Opcion 1
 		//      val serialVersionUID: Long = 1341242141L
 		//      
@@ -61,7 +59,9 @@
  		parent.add(new TextField[String]("book.title"))
  		parent.add(new TextField[String]("book.isbn"))
  		parent.add(new TextField[String]("book.editorial"))
- 		parent.add(new TextField[String]("book.description")) 
+    parent.add(new TextField[String]("book.imageUrl"))
+ 		parent.add(new TextArea[String]("book.description"))
+    parent.add(new TextField[String]("book.authors"))
  		parent.add(new FeedbackPanel("feedbackPanel"))
  	}
  }
