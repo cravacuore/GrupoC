@@ -16,6 +16,10 @@ project/plugins/project/
 .project
 .settings
 
+# Idea
+.idea/
+*.iml
+
 GrupoC-Model/.cache
 GrupoC-Model/.classpath
 GrupoC-Model/.project
