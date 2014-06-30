@@ -16,13 +16,21 @@
 	<div class="container">
 		<br />
 		<div style="float: right">
-			<button class="btn btn-default"><a href="j_spring_security_logout">Logout</a></button>
+			<button class="btn btn-default"><a href="j_spring_security_logout"><wicket:message key="logout">Logout</wicket:message></a></button>
 		</div>
 		<ul class="nav nav-tabs">
 			<!-- Navigation -->
-			<li><a wicket:id="BookList">Book List</a></li>
-		    <li><a wicket:id="RankingBorrowedBook">Ranking Borrowed Book</a></li>
-		    <li><a wicket:id="AddBook">Add Book</a></li>
+			<li><a wicket:id="BookList">
+                <wicket:message key="bookList">Book List</wicket:message></a>
+            </li>
+		    <li><a wicket:id="RankingBorrowedBook">
+                <wicket:message key="rankingList">Ranking Borrowed Book</wicket:message></a>
+            </li>
+		    <li><a wicket:id="AddBook">
+                <wicket:message key="addBook">Add Book</wicket:message></a>
+            </li>
+
+            <li><a wicket:id="TestGoogleAPIService">Test GoogleAPI Service</a></li>
 	    </ul>
     </div>
 		

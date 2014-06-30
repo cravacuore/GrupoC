@@ -19,7 +19,8 @@ class BasePage extends HeadBlankPage {
   
   private def addMainOptions {
     add(new BookmarkablePageLink("BookList", classOf[BookListPage]))
-	add(new BookmarkablePageLink("RankingBorrowedBook", classOf[RankingBorrowedBookPage]))
+	  add(new BookmarkablePageLink("RankingBorrowedBook", classOf[RankingBorrowedBookPage]))
     add(new BookmarkablePageLink("AddBook", classOf[AddEditBookPage]))
+    add(new BookmarkablePageLink("TestGoogleAPIService", classOf[TestGoogleAPIServicePage]))
   }
 }
