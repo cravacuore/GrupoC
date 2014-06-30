@@ -15,18 +15,18 @@
 	</bean>
 
 	<bean id="services.user" class="ar.edu.unq.desapp.services.bean.UserService">
-		<property name="userService" ref="services.user" />
+		<property name="repository" ref="userRepository" />
 	</bean>
 
 	<bean id="services.book" class="ar.edu.unq.desapp.services.bean.BookService">
-		<property name="bookService" ref="services.book" />
+		<property name="repository" ref="bookRepository" />
 	</bean>
 	
 	<bean id="services.author" class="ar.edu.unq.desapp.services.bean.AuthorService">
-		<property name="authorService" ref="services.author" />
+		<property name="repository" ref="authorRepository" />
 	</bean>
 
 	<bean id="services.loanBook" class="ar.edu.unq.desapp.services.bean.LoanBookService">
-		<property name="loanBookService" ref="services.loanBook" />
+		<property name="repository" ref="loanBookRepository" />
 	</bean>
 </beans>

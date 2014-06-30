@@ -25,6 +25,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="loanBookRepository" class="ar.edu.unq.desapp.repository.bean.LoanBookRepository" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="hibernateGeneric" class="ar.edu.unq.desapp.repository.generic.HibernateGenericDAO" >
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

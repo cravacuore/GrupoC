@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="5.0">
+ <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/appModel/AddEditBook.scala">
+  <error column="27" line="6" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="33" line="6" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="39" line="6" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="45" line="6" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="51" line="6" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+ </file>
  <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/HeadBlankPage.scala">
-  <error column="15" line="5" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+  <error column="15" line="7" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ </file>
+ <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/security/ComponentSecurityConfigurer.scala">
+  <error column="62" line="28" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="warning" message="There should be a space before the plus (+) sign"></error>
+  <error column="5" line="61" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="5" line="65" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="7" line="70" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="4" line="72" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="7" line="77" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="4" line="79" source="org.scalastyle.scalariform.ReturnChecker" severity="warning" message="Avoid using return"></error>
+  <error column="41" line="25" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="40" line="38" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="26" line="53" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>
+  <error column="5" line="69" source="org.scalastyle.scalariform.IfBraceChecker" severity="warning" message="If block needs braces"></error>
+  <error column="5" line="76" source="org.scalastyle.scalariform.IfBraceChecker" severity="warning" message="If block needs braces"></error>
  </file>
  <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/tabs/BookListPage.scala">
   <error column="18" line="36" source="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" severity="warning" message="Public method must have explicit type"></error>
+ </file>
+ <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/appModel/BookDetails.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
+  <error column="6" line="5" source="org.scalastyle.scalariform.EmptyClassChecker" severity="warning" message="Redundant braces after class definition"></error>
+ </file>
+ <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/appModel/BookListAppModel.scala">
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="warning" message="File must end with newline character"></error>
  </file>
  <file name="/home/jona/unq/repositories-git/GrupoC-Jona/GrupoC-Presentation/src/main/java/ar/edu/unq/desapp/view/model/LoginPage.scala">
   <error column="9" line="19" source="org.scalastyle.scalariform.NullChecker" severity="warning" message="Avoid using null"></error>

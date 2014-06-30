@@ -5,9 +5,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-
 	<bean id="wicketApplication" class="ar.edu.unq.desapp.view.model.HomeApplication">
+<!-- 		<property name="componentSecurityConfigurer" ref="componentSecurityConfigurer"/> -->
 		<property name="generalService" ref="services.general"></property>
 	</bean>
-
+	
+<!-- 	<bean id="wicketApplication" class="ar.edu.unq.desapp.view.model.HeadBlankPage"> -->
+<!-- 		<property name="generalService" ref="services.general"></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="wicketApplication" class="ejemplos.wss.presentation.JavaBaseProjectApplication"> -->
+<!-- 		<property name="componentSecurityConfigurer" ref="componentSecurityConfigurer"/> -->
+<!-- 	</bean> -->
+	
 </beans>

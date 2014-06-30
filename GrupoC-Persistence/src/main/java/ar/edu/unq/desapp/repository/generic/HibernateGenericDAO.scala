@@ -2,16 +2,22 @@ package ar.edu.unq.desapp.repository.generic
 
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
-
+import org.hibernate.SessionFactory
 import org.hibernate.Criteria
 import org.hibernate.criterion.Projections
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport
+import org.springframework.beans.factory.annotation.Autowired
 
 class HibernateGenericDAO[T] extends HibernateDaoSupport with GenericRepository[T] with Serializable {
 
   private val serialVersionUID: Long = 5058950102420892922L
   
   protected var persistentClass: Class[T] = _
+  
+  @Autowired
+  def anyMethodName(sessionFactory: SessionFactory) {
+    this.setSessionFactory(sessionFactory)
+  }
   
   override def save(entity: T) {
     this.getHibernateTemplate.save(entity)

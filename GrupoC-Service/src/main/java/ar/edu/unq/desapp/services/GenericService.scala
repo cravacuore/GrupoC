@@ -3,11 +3,13 @@ package ar.edu.unq.desapp.services
 import org.springframework.transaction.annotation.Transactional
 import ar.edu.unq.desapp.repository.generic.GenericRepository
 import org.springframework.beans.factory.annotation.Autowired
+import scala.beans.BeanProperty
 
 class GenericService[T] extends Serializable {
 
   private val serialVersionUID: Long = -6540963495078524186L
 
+  @BeanProperty
   var repository: GenericRepository[T] = _
 
   @Transactional

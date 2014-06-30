@@ -6,12 +6,16 @@
  import org.apache.wicket.markup.html.form.TextField
  import org.apache.wicket.markup.html.panel.FeedbackPanel
  import org.apache.wicket.model.CompoundPropertyModel
-
  import ar.edu.unq.desapp.appModel.AddEditBook
  import ar.edu.unq.desapp.view.tabs.BookListPage
+ import org.apache.wicket.spring.injection.annot.SpringBean
+ import ar.edu.unq.desapp.services.GeneralService
 
  class AddEditBookPage extends BasePage {
 	
+	@SpringBean(name = "generalService")
+   	var generalService: GeneralService = _
+   
  	var mainPage: BookListPage = new BookListPage
  	var addEditBook: AddEditBook = new AddEditBook
 	
