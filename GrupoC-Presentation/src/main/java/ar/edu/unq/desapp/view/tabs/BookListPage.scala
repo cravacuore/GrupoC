@@ -22,7 +22,6 @@ class BookListPage extends BasePage {
 		val form = new Form[BookListAppModel]("bookListForm",
 		    new CompoundPropertyModel[BookListAppModel](bookListAppModel)
 		)
-//		add(new Label("title", "Book Details Page"))
 		addBookTable(form)
 		add(form)
 	}
@@ -35,9 +34,13 @@ class BookListPage extends BasePage {
 			new ListView[Book]("books") {
 			  	override def populateItem(item: ListItem[Book]) = 
 			    	item.add(
-			      		new Button("title") { def onClick { detailsPage(item.getModelObject()) }}
+//			      		new Button("title") { def onClick() { detailsPage(item.getModelObject) }}
+//              new Label("title")
+              new BookmarkablePageLink("title", classOf[BookDetailsPage], new PageParameters().add("book", item.getModelObject))
 			      		// new Label("isbn")
 	//		      		new Label("registrationDate")
+                // new Label("reservation")
+                // new Label("state")
 			      	)
 			}
 		form.add(books)
@@ -45,9 +48,10 @@ class BookListPage extends BasePage {
 	
 	
 	//TODO - Refactor
-	private def detailsPage(book: Book){
-	  new BookmarkablePageLink("title", classOf[BookDetailsPage], new PageParameters().add("book", book))
-	}
+//	private def detailsPage(book: Book){
+//	  new BookmarkablePageLink("title", classOf[BookDetailsPage], new PageParameters().add("book", book))
+//    this.setResponsePage(new BookDetailsPage(book))
+//	}
 	
 	//######################### Para el borrado desde la misma lista ########################
 	//      override def onSubmit {

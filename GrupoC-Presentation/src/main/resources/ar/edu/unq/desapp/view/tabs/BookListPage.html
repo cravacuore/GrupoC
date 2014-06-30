@@ -17,30 +17,20 @@
 					<th><wicket:message key="row-title">Title</wicket:message></th>
 					<th><wicket:message key="row-isbn">Isbn</wicket:message></th>
 					<th><wicket:message key="row-regDate">Registration Date</wicket:message></th>
+                    <th><wicket:message key="row-reservations">Reservations</wicket:message></th>
+                    <th><wicket:message key="row-state">State</wicket:message></th>
 				</tr>
 
 				<form wicket:id="bookListForm">
 					<tr wicket:id="books">
-						<!-- <td><a href="#detailBookModal" data-toggle="modal">aTitle</a></td> -->
 						<td><button wicket:id="title" class="btn btn-link"><p>aTitle</p></button></td>
 						<td><p>anIsbn</p></td>
 						<td><p>dateAdded</p></td>
+                        <td><p>amount = 2</p></td>
+                        <td><p>available</p></td>
 					</tr>
 				</form>
 			</tbody>
 		</table>
 	</div>
-
-	<!-- Show details -->
-<!-- 	<div id="detailBookModal" class="modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">Details of book</h3>
-		</div>
-		<div class="modal-body">
-			<p>Let's details a fine book.....</p>
-		</div>
-	</div> -->
 </wicket:extend>
