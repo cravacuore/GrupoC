@@ -1,15 +1,14 @@
-<wicket:extend>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<div class="container">
 		<form wicket:id="loginform" class="form-signin">
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<div wicket:id="feedback"></div>
+			<h2 class="form-signin-heading">Please log in</h2>
+			<div wicket:id="feedback" />
 			<input wicket:id="username" class="form-control" type="text"
-				placeholder="Username" required autofocus /> <input
-				wicket:id="password" class="form-control" type="password"
+				placeholder="Username" required autofocus />
+            <input wicket:id="password" class="form-control" type="password"
 				placeholder="Password" required />
 			<!-- <label class="checkbox"> <input type="checkbox" value="remember-me"> Remember me </label> -->
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-				in</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 		</form>
 	</div>
 </wicket:extend>
