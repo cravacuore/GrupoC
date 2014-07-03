@@ -11,4 +11,4 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 import ar.edu.unq.desapp.view.tabs.RankingBorrowedBookPage
 import ar.edu.unq.desapp.view.tabs.BookListPage
 
-class HomePage extends BasePage {}
+class HomePage extends BasePage

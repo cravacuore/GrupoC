@@ -37,6 +37,8 @@ class ScalaBaseProjectSession(request: Request) extends AuthenticatedWebSession(
     removeAttribute(key)
   }
 
+//  def get(key: String): AnyRef = getAttribute(key)
+
   private def injectDependencies() {
     Injector.get.inject(this)
   }

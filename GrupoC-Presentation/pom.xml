@@ -136,11 +136,23 @@
 		</dependency>
 		<!-- /Wicket -->
 
+		<!-- Wicket-Bootstrap -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.2</version>
+			<groupId>de.agilecoders.wicket</groupId>
+			<artifactId>wicket-bootstrap-core</artifactId>
+			<version>0.9.3</version>
 		</dependency>
+		<dependency>
+			<groupId>de.agilecoders.wicket</groupId>
+			<artifactId>wicket-bootstrap-extensions</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>de.agilecoders.wicket</groupId>
+			<artifactId>wicket-bootstrap-themes</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+		<!-- /Wicket-Bootstrap -->
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -201,8 +213,8 @@
 			<properties>
 				<deploy.hostname>localhost</deploy.hostname>
 				<deploy.port>8081</deploy.port>
-				<deploy.artifactId>${artifactId}</deploy.artifactId>
-				<deploy.groupId>${groupId}</deploy.groupId>
+				<deploy.artifactId>${project.artifactId}</deploy.artifactId>
+				<deploy.groupId>${project.groupId}</deploy.groupId>
 			</properties>
 
 			<id>deploy-test</id>

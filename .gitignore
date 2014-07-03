@@ -16,6 +16,10 @@ project/plugins/project/
 .project
 .settings
 
+# Idea
+.idea/
+*.iml
+
 GrupoC-Model/.cache
 GrupoC-Model/.classpath
 GrupoC-Model/.project
@@ -34,8 +38,8 @@ GrupoC-Presentation/.cache
 GrupoC-Presentation/.classpath
 GrupoC-Presentation/.project
 GrupoC-Presentation/.settings
-GrupoC-PresentationModel/target
-GrupoC-PresentationModel/scalastyle-output.xml
+GrupoC-Presentation/target
+GrupoC-Presentation/scalastyle-output.xml
 
 GrupoC-Service/.cache
 GrupoC-Service/.classpath

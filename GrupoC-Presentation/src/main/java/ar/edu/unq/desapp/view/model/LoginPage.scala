@@ -33,8 +33,8 @@ class LoginPage(parameters: PageParameters) extends HeadBlankPage {
 
     add(new FeedbackPanel("feedback"))
 
-    protected override def onSubmit {
-      val session = ScalaBaseProjectSession.getSession
+    protected override def onSubmit() {
+      val session = ScalaBaseProjectSession.getSession()
       if (session.signIn(username, password)) {
         LoginForm.this.setResponsePage(classOf[HomePage])
       } else {
