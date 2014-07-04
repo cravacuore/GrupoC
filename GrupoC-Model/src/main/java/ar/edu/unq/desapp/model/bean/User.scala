@@ -1,24 +1,37 @@
 package ar.edu.unq.desapp.model.bean
 
-import java.util
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+
 import javax.persistence._
+import beans.BeanProperty
 
 @Entity
-@Table(name = "USER")
+@Table(name = "users")
 @Inheritance(strategy=InheritanceType.JOINED)
 class User (
+  @BeanProperty
   var username: String,
+  @BeanProperty
   var email: String,
+  @BeanProperty
   var password: String) {
-
+ 
   @Id @GeneratedValue
-  var id: Long = _
+  var id: Int = _
 
-  @OneToMany(mappedBy = "id_book")
-  var borrowedBooks: List[Book] = Nil
+  @BeanProperty
+  @ElementCollection
+  var rols: java.util.List[String] = _
+  
+  @BeanProperty
+  @OneToMany
+  var borrowedBooks: java.util.List[Book] = _
 
+  private def this() = this(null, null, null)
+  
   def borrowBook(aBook: Book) {
-    borrowedBooks = aBook :: borrowedBooks
+    borrowedBooks = aBook :: borrowedBooks.toList
   }
 
   def returnBook(aBook: Book) {

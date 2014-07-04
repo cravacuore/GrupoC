@@ -1,16 +1,31 @@
 package ar.edu.unq.desapp.model.bean
 
+import scala.beans.BeanProperty
+
 import org.joda.time.DateTime
-import reflect.BeanProperty
-import javax.persistence._
+
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Inheritance
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
-@Table(name = "COMMENT")
+@Table(name = "comments")
 class Comment(
-  @OneToOne(mappedBy = "id_user") var anUser: User,
-  @Column(name = "comment") var comment: String,
-  @Column(name = "comment_date") var date: DateTime) {
+  @BeanProperty
+  var comment: String,
+  @BeanProperty
+  var date: DateTime) {
+  
   @Id @GeneratedValue
   @Column(name = "id_comment")
-  var id: Long = _
+  var id: Int = _
+  
+  @ManyToOne @BeanProperty
+  var user: User = _
+  
+  def this() = this(null, null)
 }

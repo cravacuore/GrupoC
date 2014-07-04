@@ -17,4 +17,5 @@ trait Builder {
   val aLibrarian: LibrarianBuilder = new LibrarianBuilder(new LibrarySystem(aLoanConfiguration))
   val aBook: BookBuilder = new BookBuilder
   val aLoanManagement: LoanManagement = new LoanManagement(new NotificationSystem, aLoanConfiguration)
+  val anAuthor: AuthorBuilder = new AuthorBuilder
 }

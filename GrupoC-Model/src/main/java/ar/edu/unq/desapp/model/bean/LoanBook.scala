@@ -1,23 +1,36 @@
 package ar.edu.unq.desapp.model.bean
 
+import scala.beans.BeanProperty
+
 import org.joda.time.DateTime
 import org.joda.time.Days
-import reflect.BeanProperty
-import javax.persistence._
 
-@Entity
-@Table(name = "LOAN_BOOK")
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Inheritance
+import javax.persistence.OneToOne
+import javax.persistence.Table
+
+@Entity 
+@Table(name = "loan_books")
 class LoanBook(
-  @OneToOne(mappedBy = "id_user")
-  var anUser: User,
-  @OneToOne(mappedBy = "id_book")
-  var aBook: Book,
+  @BeanProperty
   var dateOfLoan: DateTime,
+  @BeanProperty
   var refundDate: DateTime) {
 
   @Id @GeneratedValue
-  var id: Long = _
+  var id: Int = _
 
+  @OneToOne @BeanProperty
+  var book: Book = _
+  
+  @OneToOne @BeanProperty
+  var user: User = _
+  
+  private def this() = this(null, null)
+  
   def isOutOfDate: Boolean = {
     dateOfLoan.isAfter(refundDate)
   }

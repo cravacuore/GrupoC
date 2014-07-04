@@ -14,7 +14,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class BookDetailsPage(params: PageParameters) extends HeadBlankPage {
 
-	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description",Nil) // TODO - get book as parameter
+	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description") // TODO - get book as parameter
  	var mainPage: BookListPage = new BookListPage
 
  	override def onInitialize() {

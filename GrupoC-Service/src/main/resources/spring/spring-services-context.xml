@@ -10,14 +10,23 @@
 	<bean id="services.general" class="ar.edu.unq.desapp.services.GeneralService">
 		<property name="userService" ref="services.user" />
 		<property name="bookService" ref="services.book" />
+		<property name="authorService" ref="services.author" />
+		<property name="loanBookService" ref="services.loanBook" />
 	</bean>
 
-	<bean id="services.user" class="ar.edu.unq.desapp.services.bean.User">
-		<property name="userService" ref="services.user" />
+	<bean id="services.user" class="ar.edu.unq.desapp.services.bean.UserService">
+		<property name="repository" ref="userRepository" />
 	</bean>
 
-	<bean id="services.book" class="ar.edu.unq.desapp.services.bean.Book">
-		<property name="bookService" ref="services.book" />
+	<bean id="services.book" class="ar.edu.unq.desapp.services.bean.BookService">
+		<property name="repository" ref="bookRepository" />
+	</bean>
+	
+	<bean id="services.author" class="ar.edu.unq.desapp.services.bean.AuthorService">
+		<property name="repository" ref="authorRepository" />
 	</bean>
 
+	<bean id="services.loanBook" class="ar.edu.unq.desapp.services.bean.LoanBookService">
+		<property name="repository" ref="loanBookRepository" />
+	</bean>
 </beans>
