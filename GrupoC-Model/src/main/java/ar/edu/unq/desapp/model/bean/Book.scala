@@ -1,21 +1,13 @@
 package ar.edu.unq.desapp.model.bean
 
 import java.util.ArrayList
+import javax.persistence.{Column, Entity, GeneratedValue, Id, OneToMany, Table}
+
+import org.joda.time.DateTime
 
 import scala.beans.BeanProperty
 import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.JavaConverters.asScalaBufferConverter
-
-import org.joda.time.DateTime
-
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Inheritance
-import javax.persistence.ManyToMany
-import javax.persistence.OneToMany
-import javax.persistence.Table
 
 @Entity @Table(name = "books")
 class Book (
@@ -26,7 +18,7 @@ class Book (
   @BeanProperty
   var editorial: String,
   @BeanProperty
-  var image: String,
+  var imageUrl: String,
   @BeanProperty
   var description: String,
   @BeanProperty
