@@ -12,8 +12,13 @@ import ar.edu.unq.desapp.view.security.ComponentSecurityConfigurer
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession
 import ar.edu.unq.desapp.view.security.WebSession
 import org.apache.wicket.markup.html.WebPage
+import ar.edu.unq.desapp.model.bean.Book
 
-class HomeApplication extends AuthenticatedWebApplication with ApplicationContextAware {
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
+import ar.edu.unq.desapp.utils.builder.Builder
+
+class HomeApplication extends AuthenticatedWebApplication with ApplicationContextAware with Builder{
   
   @BeanProperty
   var generalService: GeneralService = _
@@ -30,6 +35,8 @@ class HomeApplication extends AuthenticatedWebApplication with ApplicationContex
       this.getComponentInstantiationListeners().add(new SpringComponentInjector(this))
       isInitialized = true
     }
+    this.getGeneralService
+    this.generateData
     Bootstrap.install(this)
   }
 
@@ -51,5 +58,9 @@ class HomeApplication extends AuthenticatedWebApplication with ApplicationContex
 
   def setComponentSecurityConfigurer(componentSecurityConfigurer: ComponentSecurityConfigurer) {
     this.componentSecurityConfigurer = componentSecurityConfigurer;
+  }
+
+  private def generateData {
+    generalService.bookService.save(aBook.build)
   }
 }

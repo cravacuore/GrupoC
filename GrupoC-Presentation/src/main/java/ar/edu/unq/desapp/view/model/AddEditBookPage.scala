@@ -59,9 +59,9 @@
  		parent.add(new TextField[String]("book.title"))
  		parent.add(new TextField[String]("book.isbn"))
  		parent.add(new TextField[String]("book.editorial"))
-    parent.add(new TextField[String]("book.imageUrl"))
+ 		parent.add(new TextField[String]("book.imageUrl"))
  		parent.add(new TextArea[String]("book.description"))
-    parent.add(new TextField[String]("book.authors"))
+ 		parent.add(new TextField[String]("book.authors"))
  		parent.add(new FeedbackPanel("feedbackPanel"))
  	}
  }

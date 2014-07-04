@@ -2,7 +2,6 @@ package ar.edu.unq.desapp.services
 
 import org.springframework.transaction.annotation.Transactional
 import ar.edu.unq.desapp.repository.generic.GenericRepository
-import org.springframework.beans.factory.annotation.Autowired
 import scala.beans.BeanProperty
 
 class GenericService[T] extends Serializable {
@@ -11,7 +10,7 @@ class GenericService[T] extends Serializable {
 
   @BeanProperty
   var repository: GenericRepository[T] = _
-
+  
   @Transactional
   def save(obj: T) {
     this.repository.save(obj);

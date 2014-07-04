@@ -106,7 +106,7 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       
     }
     
-    it("should save the authors to the book") {
+    ignore("should save the authors to the book") {
       Given("one book with one Author")
       val author_bookA = anAuthor.withName("Julio Cortazar").build :: Nil 
       val bookA: Book = aBook.withAuthors(author_bookA).build
