@@ -26,7 +26,7 @@ class Book (
   @BeanProperty
   var editorial: String,
   @BeanProperty
-  var image: String,
+  var imageUrl: String,
   @BeanProperty
   var description: String,
   @BeanProperty
