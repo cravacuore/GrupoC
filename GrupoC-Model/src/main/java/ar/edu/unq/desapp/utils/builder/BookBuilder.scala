@@ -1,13 +1,9 @@
 package ar.edu.unq.desapp.utils.builder
 
-import java.awt.Image
-import java.awt.image.BufferedImage
+import ar.edu.unq.desapp.model.bean.{Author, Book, Comment}
 import org.joda.time.DateTime
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.model.bean.Author
+
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-import ar.edu.unq.desapp.model.bean.Comment
 
 class BookBuilder extends BuilderToTest[Book] {
 
@@ -67,7 +63,7 @@ class BookBuilder extends BuilderToTest[Book] {
   }
 
   def build: Book = {
-    var book = new Book(
+    val book = new Book(
       this.title,
       this.isbn,
       this.editorial,
@@ -76,6 +72,19 @@ class BookBuilder extends BuilderToTest[Book] {
       this.amount)
     
     book.authors = this.authors
+    clean()
     book
+  }
+
+  def clean() {
+    this.title = "no title"
+    this.isbn = "no isbn"
+    this.editorial = "no editorial"
+    this.image = "no picture"
+    this.description = "no description"
+    this.authors = Nil
+    this.comments = Nil
+    this.amount = 1
+    this.registrationDate = new DateTime
   }
 }
