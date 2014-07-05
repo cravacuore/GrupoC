@@ -4,6 +4,7 @@ import java.util
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.utils.builder.Builder
 import ar.edu.unq.desapp.services.bean.BookService
+import ar.edu.unq.desapp.view.model.BookDetailsPage
 import scala.beans.BeanProperty
 import org.apache.wicket.spring.injection.annot.SpringBean
 

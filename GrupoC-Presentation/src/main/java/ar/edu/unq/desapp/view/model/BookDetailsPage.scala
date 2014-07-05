@@ -1,20 +1,18 @@
 package ar.edu.unq.desapp.view.model
 
+import ar.edu.unq.desapp.appModel.BookDetails
+import ar.edu.unq.desapp.model.bean.Book
+import ar.edu.unq.desapp.view.tabs.BookListPage
+import org.apache.wicket.AttributeModifier
 import org.apache.wicket.markup.html.basic.Label
-import org.apache.wicket.markup.html.form.Button
-import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.{Button, Form}
 import org.apache.wicket.markup.html.image.Image
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.CompoundPropertyModel
 
-import ar.edu.unq.desapp.appModel.BookDetails
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.view.tabs.BookListPage
-import org.apache.wicket.request.mapper.parameter.PageParameters
+class BookDetailsPage(book: Book) extends HeadBlankPage {
 
-class BookDetailsPage(params: PageParameters) extends HeadBlankPage {
-
-	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description") // TODO - get book as parameter
+//	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description") // TODO - get book as parameter
  	var mainPage: BookListPage = new BookListPage
 
  	override def onInitialize() {
@@ -30,7 +28,9 @@ class BookDetailsPage(params: PageParameters) extends HeadBlankPage {
  	}
 	
  	private def addImage(parent: Form[BookDetails]) {
- 		parent.add(new Image("cover", "../library.png"))
+    val image = new Image("cover", "../library.png")
+    image.add(new AttributeModifier("src", "http://t2.gstatic.com/images?q=tbn:ANd9GcSaOsFcBu3jppknP5v6lzUI59V-aBvGTeNQ0MigpXHZfrLSOuLd"))
+		parent.add(image)
  	}
 
  	private def addLabels(parent: Form[BookDetails]) {
@@ -38,7 +38,6 @@ class BookDetailsPage(params: PageParameters) extends HeadBlankPage {
  		parent.add(new Label("book.isbn"))
  		parent.add(new Label("book.editorial"))
  		parent.add(new Label("book.description"))
-// 		parent.add(new FeedbackPanel("feedbackPanel"))
  	}
 
  	private def addActions(parent: Form[BookDetails]){
