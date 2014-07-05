@@ -53,7 +53,7 @@ class BookListPage extends BasePage {
 		form.add(books)
 	}
 
-  private def detailsBook(aBook: Book) {
-    this.setResponsePage(new BookDetailsPage(aBook))
-  }
+    private def detailsBook(aBook: Book) {
+        this.setResponsePage(new BookDetailsPage(aBook))
+    }
 }
