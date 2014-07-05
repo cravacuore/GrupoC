@@ -13,7 +13,7 @@ import org.apache.wicket.model.CompoundPropertyModel
 class BookDetailsPage(book: Book) extends HeadBlankPage {
 
 //	var book: Book = new Book("no title","no isbn","no editorial","this must be an Image-URL","no description") // TODO - get book as parameter
- 	var mainPage: BookListPage = new BookListPage
+	var mainPage: BookListPage = new BookListPage
 
  	override def onInitialize() {
  	  super.onInitialize()
@@ -42,7 +42,7 @@ class BookDetailsPage(book: Book) extends HeadBlankPage {
 
  	private def addActions(parent: Form[BookDetails]){
  		parent.add(new Button("addComment") { def onClick() { commentPage() }})
-// 		parent.add(new Button("back") {	def onClick() { backPage() }})
+//		parent.add(new Button("back") {	override def onSubmit() { backPage() }})
     parent.add(new BookmarkablePageLink("back", classOf[BookListPage]))
  	}
 
@@ -51,6 +51,6 @@ class BookDetailsPage(book: Book) extends HeadBlankPage {
  	}
 
  	private def backPage() {
-		this.setResponsePage(mainPage)
+//		this.setResponsePage(this.returnPage)
  	}
 }

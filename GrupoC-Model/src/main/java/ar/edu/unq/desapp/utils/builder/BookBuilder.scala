@@ -2,11 +2,6 @@ package ar.edu.unq.desapp.utils.builder
 
 import ar.edu.unq.desapp.model.bean.{Author, Book, Comment}
 import org.joda.time.DateTime
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.model.bean.Author
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-import ar.edu.unq.desapp.model.bean.Comment
 
 import scala.collection.JavaConversions._
 

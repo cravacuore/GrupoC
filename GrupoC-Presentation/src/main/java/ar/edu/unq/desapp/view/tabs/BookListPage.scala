@@ -18,8 +18,8 @@ class BookListPage extends BasePage {
   @BeanProperty @SpringBean(name = "services.general")
   var generalService: GeneralService = _
   
-	override def onInitialize {
-		super.onInitialize
+	override def onInitialize() {
+		super.onInitialize()
 		val bookListAppModel = new BookListAppModel(this.generalService.bookService)
 		val form = new Form[BookListAppModel]("bookListForm",
 		    new CompoundPropertyModel[BookListAppModel](bookListAppModel)
@@ -44,7 +44,7 @@ class BookListPage extends BasePage {
 //                new BookmarkablePageLink("details", classOf[BookDetailsPage], new PageParameters().add("book", book.getModelObject)),
                 new Button("details") { override def onSubmit() { detailsBook(book.getModelObject)} },
 //                new Button("edit") { def onClick() { form.getModelObject.editBook(book.getModelObject)} },
-                new Button("delete") { def onClick() { form.getModelObject.deleteBook(book.getModelObject)}	}
+                new Button("delete") { override def onSubmit() { form.getModelObject.deleteBook(book.getModelObject)}	}
             )
 			}
     // Pagination nav
