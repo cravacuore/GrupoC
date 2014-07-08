@@ -21,7 +21,7 @@
 	<bean id="services.book" class="ar.edu.unq.desapp.services.bean.BookService">
 		<property name="repository" ref="bookRepository" />
 	</bean>
-	
+
 	<bean id="services.author" class="ar.edu.unq.desapp.services.bean.AuthorService">
 		<property name="repository" ref="authorRepository" />
 	</bean>

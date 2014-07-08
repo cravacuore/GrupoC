@@ -1,27 +1,21 @@
-package ar.edu.unq.desapp.services.bean
+package ar.edu.unq.desapp.services
 
-import ar.edu.unq.desapp.services.GenericService
-import ar.edu.unq.desapp.model.bean.{Author, Book}
-import javax.annotation.Resource
-import ar.edu.unq.desapp.repository.bean.BookRepository
+import ar.edu.unq.desapp.model.bean.Book
 import org.apache.commons.io.IOUtils
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.DefaultHttpClient
-import scala.beans.BeanProperty
+
 import scala.util.parsing.json.JSON
 
-import scala.collection.JavaConversions._
+class BookApiService {  // TODO - Delete - Deprecated, now this behavior added on BookService
 
-class BookService extends GenericService[Book] {
+  //  def getBook(isbn: String = "s1gVAAAAYAAJ") = {
+  //    Http("http://www.googleapis.com/books/v1/volumes/?q=isbn:" + isbn)
+  ////      .param("key","AIzaSyBjabeSyJz1GuxqRLBI9S434upZLfkC35I")
+  //      .option(HttpOptions.connTimeout(10000))
+  //      .asString
+  //  }
 
-  @BeanProperty @Resource
-  var bookRepository: BookRepository = _
-  
-  def retriveAllMostBorrowed: java.util.List[Book] = {
-	bookRepository.findTheTwentyMostBorrowedBook
-  }
-
-////////////////// Google Books Api Service
   class CC[T] { def unapply(a:Any):Option[T] = Some(a.asInstanceOf[T]) }
 
   object M extends CC[Map[String, Any]]
@@ -36,7 +30,7 @@ class BookService extends GenericService[Book] {
     for {
       Some(M(map)) <- List(getJson(isbn))
       L(items) = map("items")
-      //M(item) = map("items")
+//M(item) = map("items")
       M(item) <- items
       M(volumeInfo) = item("volumeInfo")
       S(title) = volumeInfo("title")
@@ -45,19 +39,11 @@ class BookService extends GenericService[Book] {
       M(imageLinks) = volumeInfo("imageLinks")
       S(imageUrl) = imageLinks("thumbnail")
     } yield {
-      var authorsList: List[Author] = Nil
-        for (author <- authors) {
-          authorsList = new Author(author.toString) :: authorsList
-        }
-      //TODO - Add description - Get more than one author (for <- authors)
-      val book: Book = new Book(title, isbn, editorial, imageUrl, null)
-      book.setAuthors(authorsList.toList)
-
-      book
+      new Book(title, isbn, editorial, imageUrl, authors.toString()) //TODO - Add description
     }
   }
 
-  private def getJson(isbn: String) = {
+  def getJson(isbn: String) = {
     val apiUrl = "https://www.googleapis.com/books/v1/volumes/"
     val apiKey = "&key=AIzaSyBjabeSyJz1GuxqRLBI9S434upZLfkC35I"
     val filterParams = "&fields=items(volumeInfo)"

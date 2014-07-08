@@ -1,20 +1,14 @@
 package ar.edu.unq.desapp.services.login
 
-import scala.collection.JavaConversions.seqAsJavaList
-
+import ar.edu.unq.desapp.model.bean.User
+import com.google.common.base.Function
+import com.google.common.collect.Collections2
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.userdetails.UserDetails
 
-import com.google.common.base.Function
-import com.google.common.collect.Collections2
-
-import ar.edu.unq.desapp.model.bean.User
-
 class UserLogin(var user: User) extends UserDetails {
-  private val serialVersionUID: Long = 1L
-  
-  override def getAuthorities(): java.util.Collection[GrantedAuthority] = {
+  override def getAuthorities: java.util.Collection[GrantedAuthority] = {
     Collections2.transform(this.user.rols, new Function[String, GrantedAuthority]() {
       override def apply(role: String): GrantedAuthority = {
         new GrantedAuthorityImpl(role) 
