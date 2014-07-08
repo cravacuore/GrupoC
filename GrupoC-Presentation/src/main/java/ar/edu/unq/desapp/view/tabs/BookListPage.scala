@@ -3,7 +3,7 @@ package ar.edu.unq.desapp.view.tabs
 import ar.edu.unq.desapp.appModel.BookListAppModel
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.services.GeneralService
-import ar.edu.unq.desapp.view.model.{BookDetailsPage, BasePage}
+import ar.edu.unq.desapp.view.model.{BasePage, BookDetailsPage}
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.BootstrapPagingNavigator
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.{Button, Form}
@@ -38,12 +38,12 @@ class BookListPage extends BasePage {
                 new Label("title", book.getModelObject.title),
                 new Label("isbn", book.getModelObject.isbn),
                 new Label("registrationDate", book.getModelObject.registrationDate.toDate),
-                new Label("reservation", form.getModelObject.getReservationsAmount(book.getModelObject)),
+                new Label("amount", book.getModelObject.getAmount),
+                new Label("reservations", form.getModelObject.getReservationsAmount(book.getModelObject)),
                 new Label("state", form.getModelObject.isAvailable(book.getModelObject)),
             //Actions
-//                new BookmarkablePageLink("details", classOf[BookDetailsPage], new PageParameters().add("book", book.getModelObject)),
                 new Button("details") { override def onSubmit() { detailsBook(book.getModelObject)} },
-//                new Button("edit") { def onClick() { form.getModelObject.editBook(book.getModelObject)} },
+                new Button("reserve") { override def onSubmit() { form.getModelObject.reserveBook(book.getModelObject)} },
                 new Button("delete") { override def onSubmit() { form.getModelObject.deleteBook(book.getModelObject)}	}
             )
 			}
@@ -53,7 +53,7 @@ class BookListPage extends BasePage {
 		form.add(books)
 	}
 
-    private def detailsBook(aBook: Book) {
-        this.setResponsePage(new BookDetailsPage(aBook))
-    }
+  private def detailsBook(aBook: Book) {
+      this.setResponsePage(new BookDetailsPage(aBook))
+  }
 }

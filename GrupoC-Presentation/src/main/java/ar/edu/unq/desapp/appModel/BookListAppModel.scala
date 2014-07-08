@@ -11,12 +11,15 @@ class BookListAppModel(var bookService: BookService) extends Serializable with B
   var books: java.util.List[Book] = bookService.retriveAll//new util.ArrayList
 
   def isAvailable(aBook: Book): String = {
-    if(aBook.amount > 3) "Available" else "Not available" // TODO - aBook.reservations -> get this through Service?
+    if(aBook.amount > getReservationsAmount(aBook)) "Available" else "Not available"
   }
 
   def getReservationsAmount(aBook: Book): Int = {
-    1 // Service.getAmount(aBook) // TODO - Use service to get needed info
-//    bookService.findById(aBook).getReservationsAmount()
+    1//TODO
+  }
+
+  def reserveBook(aBook: Book) {
+    //TODO
   }
 
   def deleteBook(aBook: Book) {
