@@ -22,7 +22,7 @@ class NotificationSystem {
 
   def addObserver(anUser: User, aBook: Book) {
     val notifyUsers: List[User] = users.get(aBook) match {
-      case Some(users) => anUser :: users
+      case Some(`users`) => anUser :: users
       case None => anUser :: Nil
     }
     users += (aBook -> notifyUsers)
@@ -30,9 +30,9 @@ class NotificationSystem {
 
   def notifyAllUsers(aBook: Book) {
     users.get(aBook) match {
-      case Some(users) => users.foreach(user => mailer.sendNotification(user, aBook))
+      case Some(`users`) => users.foreach(user => mailer.sendNotification(user, aBook))
       case None => Nil
     }
-    users = users - (aBook)
+    users = users - aBook
   }
 }

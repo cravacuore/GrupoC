@@ -1,10 +1,9 @@
 package ar.edu.unq.desapp.model.bean
 
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-
 import javax.persistence._
-import beans.BeanProperty
+
+import scala.beans.BeanProperty
+import scala.collection.JavaConversions._
 
 @Entity
 @Table(name = "users")
@@ -28,7 +27,7 @@ class User (
   @OneToMany
   var borrowedBooks: java.util.List[Book] = _
 
-  private def this() = this(null, null, null)
+  def this() = this(null, null, null)
   
   def borrowBook(aBook: Book) {
     borrowedBooks = aBook :: borrowedBooks.toList

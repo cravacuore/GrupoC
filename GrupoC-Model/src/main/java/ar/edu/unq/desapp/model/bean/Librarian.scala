@@ -1,7 +1,5 @@
 package ar.edu.unq.desapp.model.bean
 
-import java.awt.Image
-import ar.edu.unq.desapp.model.management.LibrarySystem
 import javax.persistence._
 
 @Entity

@@ -1,15 +1,12 @@
 package ar.edu.unq.desapp.model
 
-import org.scalatest.FunSpec
-import org.specs2.mock.Mockito
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.GivenWhenThen
-import java.awt.Image
-import ar.edu.unq.desapp.utils.builder.Builder
+import ar.edu.unq.desapp.model.bean.{Book, LoanConfiguration}
 import ar.edu.unq.desapp.model.management.LibrarySystem
-import ar.edu.unq.desapp.model.bean.LoanConfiguration
 import ar.edu.unq.desapp.model.search.SearchBookSystem
-import ar.edu.unq.desapp.model.bean.Book
+import ar.edu.unq.desapp.utils.builder.Builder
+import org.scalatest.{FunSpec, GivenWhenThen}
+import org.scalatest.matchers.ShouldMatchers
+import org.specs2.mock.Mockito
 
 class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen with Mockito with Builder {
 
@@ -23,14 +20,14 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       val bookC = aBook.build
 
       when("loading the books")
-      librarySystem manualBookLoad (bookA)
-      librarySystem manualBookLoad (bookB)
-      librarySystem manualBookLoad (bookC)
+      librarySystem manualBookLoad bookA
+      librarySystem manualBookLoad bookB
+      librarySystem manualBookLoad bookC
 
       then("the books should be loaded")
-      val booksLoaded = librarySystem books
+      val booksLoaded = librarySystem.books
 
-      booksLoaded should have size (3)
+      booksLoaded should have size 3
       booksLoaded should contain(bookA)
       booksLoaded should contain(bookB)
       booksLoaded should contain(bookC)
@@ -45,17 +42,17 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       val title = "Title"
 
       when("searching the books by isbn and title automatically")
-      librarySystem automaticBookLoadByIsbn (isbn)
-      librarySystem automaticBookLoadByTitle (title)
+      librarySystem automaticBookLoadByIsbn isbn
+      librarySystem automaticBookLoadByTitle title
 
       then("the books should be found and loaded")
-      val bookLoadedByIsbn: List[Book] = searcher searchByIsbn (isbn)
-      val bookLoadedByTitle: List[Book] = searcher searchBook (title)
+      val bookLoadedByIsbn: List[Book] = searcher searchByIsbn isbn
+      val bookLoadedByTitle: List[Book] = searcher searchBook title
 
-      bookLoadedByIsbn should have size (1)
+      bookLoadedByIsbn should have size 1
       bookLoadedByIsbn should contain(isbn)
 
-      bookLoadedByTitle should have size (1)
+      bookLoadedByTitle should have size 1
       bookLoadedByTitle should contain(title)
     }
 
@@ -76,8 +73,8 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
       then("the book should not be on the system")
       val books = librarySystem.books
 
-      books should have size (2)
-      books should not contain (bookA)
+      books should have size 2
+      books should not contain bookA
       books should contain(bookB)
       books should contain(bookC)
     }
@@ -95,7 +92,7 @@ class LibrarySystemTest extends FunSpec with ShouldMatchers with GivenWhenThen w
 
       then("the amount of the book should have changed")
       librarySystem.books should contain(bookA)
-      librarySystem.books should have size (1)
+      librarySystem.books should have size 1
       librarySystem.books(0) should have('amount(newAmount))
     }
 
