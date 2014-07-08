@@ -6,7 +6,9 @@ import javax.persistence._
 @Table
 @PrimaryKeyJoinColumn(name = "id_user")
 class Librarian(username: String, email: String, password: String)
-  extends User(username, email, password) {
+  extends User(username, email, password)
+
+//{
 
 //  def addBookToSystem(book: Book, cant: Int = 1) {
 //    librarySystem manualBookLoad (book, cant)
@@ -35,4 +37,4 @@ class Librarian(username: String, email: String, password: String)
 //      case "Librarian" => librarySystem.users = new Librarian(username, email, password, librarySystem) :: librarySystem.users
 //    }
 //  }
-}
+//}

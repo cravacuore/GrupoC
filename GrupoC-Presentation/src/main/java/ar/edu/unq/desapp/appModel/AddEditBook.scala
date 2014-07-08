@@ -39,7 +39,7 @@ class AddEditBook(var generalService: GeneralService) extends Serializable with 
     generalService.bookService.save(book)
   }
 
-  def getExternalBook: Book = {
+  def getExternalBook(): Book = {
     generalService.bookService.getExternalBook(book_isbn)
   }
   
