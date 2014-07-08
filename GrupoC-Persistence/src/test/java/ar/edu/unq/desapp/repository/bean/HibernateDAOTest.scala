@@ -1,17 +1,13 @@
 package ar.edu.unq.desapp.repository.bean
 
-import org.scalatest.FunSpec
-import org.scalatest.GivenWhenThen
-import org.scalatest.matchers.ShouldMatchers
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestContextManager
-
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.utils.builder.Builder
+import org.scalatest.{FunSpec, GivenWhenThen, Matchers}
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.{ContextConfiguration, TestContextManager}
 
 @ContextConfiguration( Array("classpath:/META-INF/spring-persistence-context.xml", "classpath:/spring/*.xml"))
-class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen with Builder {
+class HibernateDAOTest extends FunSpec with Matchers with GivenWhenThen with Builder {
   
   new TestContextManager(classOf[HibernateDAOTest]).prepareTestInstance(this)
   @Autowired
@@ -108,7 +104,7 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     
     ignore("should save the authors to the book") {
       Given("one book with one Author")
-      val author_bookA = anAuthor.withName("Julio Cortazar").build :: Nil 
+      val author_bookA = anAuthor.withName("Julio Cortazar").build :: Nil
       val bookA: Book = aBook.withAuthors(author_bookA).build
       
       When("save the books with authors")
@@ -131,7 +127,7 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       book_to_modify.description = "Write by Herman Melville"
       bookRepository.save(book_to_modify)
        
-     then("should get following details modify")
+     Then("should get following details modify")
      val book_modified = bookRepository.findByExample(book_to_modify)(0)
      
      book_modified should have(
