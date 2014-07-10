@@ -5,7 +5,6 @@ import ar.edu.unq.desapp.services.bean.BookService
 import ar.edu.unq.desapp.utils.builder.Builder
 
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 
 class BookListAppModel(var bookService: BookService) extends Serializable with Builder {
   
@@ -26,9 +25,5 @@ class BookListAppModel(var bookService: BookService) extends Serializable with B
 
   def deleteBook(aBook: Book) {
     bookService.delete(aBook)
-  }
-
-  def searchIt() {
-    books = bookService.search(this.search).asJava
   }
 }

@@ -10,9 +10,6 @@ import org.apache.wicket.model.CompoundPropertyModel
 
 class RankingBorrowedBookPage extends BasePage {
 
-//  @BeanProperty @SpringBean(name = "services.general")
-//  var generalService: GeneralService = _
-
   override def onInitialize() {
     super.onInitialize()
     val bookListAppModel = new RankingBorrowedBookAppModel(this.generalService.bookService)
@@ -20,10 +17,8 @@ class RankingBorrowedBookPage extends BasePage {
       new CompoundPropertyModel[RankingBorrowedBookAppModel](bookListAppModel)
     )
 
-//// TODO - Uncomment this when mostBorrowed on BookService is implemented
-//    createTableRanking(form)
-///  /TODO
-
+    createTableRanking(form)
+//    addActions(form)
     add(form)
   }
 

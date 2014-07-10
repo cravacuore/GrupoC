@@ -1,9 +1,9 @@
 package ar.edu.unq.desapp.services.bean
 
 import ar.edu.unq.desapp.services.GenericService
-import ar.edu.unq.desapp.model.bean.{Author, Book}
+import ar.edu.unq.desapp.model.bean.{LoanBook, Author, Book}
 import javax.annotation.Resource
-import ar.edu.unq.desapp.repository.bean.BookRepository
+import ar.edu.unq.desapp.repository.bean.{LoanBookRepository, BookRepository}
 import org.apache.commons.io.IOUtils
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.DefaultHttpClient
@@ -17,19 +17,21 @@ class BookService extends GenericService[Book] {
   @BeanProperty @Resource
   var bookRepository: BookRepository = _
 
-  def search(s: String): List[Book] = {
-    val books = this.retriveAll
-    var result: List[Book] = Nil
+  @BeanProperty @Resource
+  var loanBookRepository: LoanBookRepository = _
 
-    for (book <- books ) {
-      if(book.getTitle.contains(s) || book.getDescription.contains(s))
-        result = book :: result
-    }
-    result
-  }
-  
   def retriveAllMostBorrowed: java.util.List[Book] = {
-	  bookRepository.findTheTwentyMostBorrowedBook
+    val loanBooks: java.util.List[LoanBook] = loanBookRepository.findAll
+    var allMostBorrowedBooks: Map[Book, Int] = Map()
+    for(loan <- loanBooks) { //I know, it's horrible
+      if(allMostBorrowedBooks.contains(loan.book)) {
+        allMostBorrowedBooks.updated(loan.book, allMostBorrowedBooks.get(loan.book))
+      }
+      else {
+        allMostBorrowedBooks += (loan.book -> 1)
+      }
+    }
+    allMostBorrowedBooks.keySet.toList
   }
 
 ////////////////// Google Books Api Service

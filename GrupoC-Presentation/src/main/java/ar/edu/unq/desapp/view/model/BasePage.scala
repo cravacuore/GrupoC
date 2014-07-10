@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.view.model
 
 import ar.edu.unq.desapp.appModel.BookListAppModel
 import ar.edu.unq.desapp.services.GeneralService
-import ar.edu.unq.desapp.view.tabs.BookListPage
+import ar.edu.unq.desapp.view.tabs.{RankingBorrowedBookPage, BookListPage}
 import org.apache.wicket.markup.html.form.{Button, Form, TextField}
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.CompoundPropertyModel
@@ -34,15 +34,7 @@ class BasePage extends HeadBlankPage {
 
   private def addSearcher(parent: Form[BookListAppModel]) {
     add(new TextField("search"))
-    add(new Button("btn-search") { override def onSubmit() { search() } })
-  }
-
-  private def search() {
-    val page = new BookListPage()
-    page.appModel.search = this.appModel.search
-    page.appModel.searchIt()
-
-    setResponsePage(page)
+    add(new Button("btn-search") { override def onSubmit() { /*TODO*/ } })
   }
 
   private def addProfileLink() {
@@ -51,7 +43,7 @@ class BasePage extends HeadBlankPage {
   
   private def addMainOptions() {
     add(new BookmarkablePageLink("BookList", classOf[BookListPage]))
-//	  add(new BookmarkablePageLink("RankingBorrowedBook", classOf[RankingBorrowedBookPage]))
+	  add(new BookmarkablePageLink("RankingBorrowedBook", classOf[RankingBorrowedBookPage]))
     add(new BookmarkablePageLink("AddBook", classOf[AddEditBookPage]))
     add(new BookmarkablePageLink("AddApiBook", classOf[AddApiBookPage]))
   }

@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration
 class HibernateDAOTest extends FunSpec with Matchers with GivenWhenThen with Builder
 
 //{
-  
 //  new TestContextManager(classOf[HibernateDAOTest]).prepareTestInstance(this)
 //  @Autowired
 //  var bookRepository: BookRepository = _
@@ -22,7 +21,7 @@ class HibernateDAOTest extends FunSpec with Matchers with GivenWhenThen with Bui
 //
 //      val bookA = aBook
 //      				.withTitle("Alguien que anda por ahi")
-//      				.withIsbn("isbn-1231")
+//            	.withIsbn("isbn-1231")
 //      				.withEditorial("Editorial Argentina")
 //      				.withDescription("Libro por Julio Cortazar").build
 //      val bookB = aBook
@@ -134,6 +133,45 @@ class HibernateDAOTest extends FunSpec with Matchers with GivenWhenThen with Bui
 //    		 			'title("Moby Dick, The whale"),
 //    		 			'description("Write by Herman Melville"),
 //    		 			'isbn("isbn-0123"))
+//    }
+//
+//    it("loan book repository") {
+//
+//      val bookA = aBook
+//        .withTitle("Alguien que anda por ahi")
+//        .withIsbn("isbn-1231")
+//        .withEditorial("Editorial Argentina")
+//        .withDescription("Libro por Julio Cortazar").build
+//      val bookB = aBook
+//        .withTitle("El alquimista")
+//        .withIsbn("isbn-234")
+//        .withEditorial("Editorial-A")
+//        .withDescription("Libro escrito por Pablo Cohelo").build
+//
+//
+//      val userA = anUser.build
+//      val userB = anUser.withName("asdasd").build
+//      bookRepository.save(bookA)
+//      bookRepository.save(bookB)
+//      userRepository.save(userA)
+//      userRepository.save(userB)
+//
+//      val loanBookA = new LoanBook(new DateTime, new DateTime)
+//      loanBookA.book = bookA
+//      loanBookA.user = userA
+//      val loanBookB = new LoanBook(new DateTime, new DateTime)
+//      loanBookB.book = bookB
+//      loanBookB.user = userB
+//      val loanBookC = new LoanBook(new DateTime, new DateTime)
+//      loanBookC.book = bookA
+//      loanBookC.user = userB
+//
+//      loanBookRepository.save(loanBookA)
+//      loanBookRepository.save(loanBookB)
+//      loanBookRepository.save(loanBookC)
+//
+//      val loanBooks: List[LoanBook] = loanBookRepository.findAll.toList
+//      loanBooks.size should be (1)
 //    }
 //  }
 //}
