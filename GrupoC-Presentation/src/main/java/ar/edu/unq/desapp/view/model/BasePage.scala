@@ -20,10 +20,12 @@ class BasePage extends HeadBlankPage {
     super.onInitialize()
 
     val form = new Form[BookListAppModel]("form", new CompoundPropertyModel(this.appModel))
-    this.addLinkToHome()
-    this.addSearcher(form)
-    this.addProfileLink()
-    this.addMainOptions()
+    addSearcher(form)
+
+    addLinkToHome()
+    addProfileLink()
+    addMainOptions()
+    addLogoutOption()
   }
 
   private def addLinkToHome() {
@@ -52,5 +54,9 @@ class BasePage extends HeadBlankPage {
 //	  add(new BookmarkablePageLink("RankingBorrowedBook", classOf[RankingBorrowedBookPage]))
     add(new BookmarkablePageLink("AddBook", classOf[AddEditBookPage]))
     add(new BookmarkablePageLink("AddApiBook", classOf[AddApiBookPage]))
+  }
+
+  private def addLogoutOption() {
+    add(new BookmarkablePageLink("logout", classOf[LoginPage]))
   }
 }
