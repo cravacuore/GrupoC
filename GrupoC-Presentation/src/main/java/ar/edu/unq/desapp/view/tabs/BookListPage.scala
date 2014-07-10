@@ -2,21 +2,17 @@ package ar.edu.unq.desapp.view.tabs
 
 import ar.edu.unq.desapp.appModel.BookListAppModel
 import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.services.GeneralService
 import ar.edu.unq.desapp.view.model.{BasePage, BookDetailsPage}
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.BootstrapPagingNavigator
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.{Button, Form}
 import org.apache.wicket.markup.html.list.{ListItem, PageableListView}
 import org.apache.wicket.model.CompoundPropertyModel
-import org.apache.wicket.spring.injection.annot.SpringBean
-
-import scala.beans.BeanProperty
 
 class BookListPage extends BasePage {
   
-  @BeanProperty @SpringBean(name = "services.general")
-  var generalService: GeneralService = _
+//  @BeanProperty @SpringBean(name = "services.general")
+//  var generalService: GeneralService = _
   
 	override def onInitialize() {
 		super.onInitialize()

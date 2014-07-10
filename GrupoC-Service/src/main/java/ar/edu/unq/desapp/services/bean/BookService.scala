@@ -16,9 +16,20 @@ class BookService extends GenericService[Book] {
 
   @BeanProperty @Resource
   var bookRepository: BookRepository = _
+
+  def search(s: String): List[Book] = {
+    val books = this.retriveAll
+    var result: List[Book] = Nil
+
+    for (book <- books ) {
+      if(book.getTitle.contains(s) || book.getDescription.contains(s))
+        result = book :: result
+    }
+    result
+  }
   
   def retriveAllMostBorrowed: java.util.List[Book] = {
-	bookRepository.findTheTwentyMostBorrowedBook
+	  bookRepository.findTheTwentyMostBorrowedBook
   }
 
 ////////////////// Google Books Api Service

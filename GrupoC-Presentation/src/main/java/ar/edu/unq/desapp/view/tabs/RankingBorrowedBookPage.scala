@@ -2,20 +2,16 @@ package ar.edu.unq.desapp.view.tabs
 
 import ar.edu.unq.desapp.appModel.RankingBorrowedBookAppModel
 import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.services.GeneralService
 import ar.edu.unq.desapp.view.model.BasePage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.list.{ListItem, ListView}
 import org.apache.wicket.model.CompoundPropertyModel
-import org.apache.wicket.spring.injection.annot.SpringBean
-
-import scala.beans.BeanProperty
 
 class RankingBorrowedBookPage extends BasePage {
 
-  @BeanProperty @SpringBean(name = "services.general")
-  var generalService: GeneralService = _
+//  @BeanProperty @SpringBean(name = "services.general")
+//  var generalService: GeneralService = _
 
   override def onInitialize() {
     super.onInitialize()

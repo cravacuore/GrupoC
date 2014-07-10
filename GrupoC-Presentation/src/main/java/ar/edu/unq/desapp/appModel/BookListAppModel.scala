@@ -5,10 +5,12 @@ import ar.edu.unq.desapp.services.bean.BookService
 import ar.edu.unq.desapp.utils.builder.Builder
 
 import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 class BookListAppModel(var bookService: BookService) extends Serializable with Builder {
   
   var books: java.util.List[Book] = bookService.retriveAll//new util.ArrayList
+  var search: String = ""
 
   def isAvailable(aBook: Book): String = {
     if(aBook.amount > getReservationsAmount(aBook)) "Available" else "Not available"
@@ -24,5 +26,9 @@ class BookListAppModel(var bookService: BookService) extends Serializable with B
 
   def deleteBook(aBook: Book) {
     bookService.delete(aBook)
+  }
+
+  def searchIt() {
+    books = bookService.search(this.search).asJava
   }
 }

@@ -4,26 +4,17 @@ import ar.edu.unq.desapp.view.security.ScalaBaseProjectSession
 import org.apache.wicket.markup.html.form.{Form, PasswordTextField, RequiredTextField}
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.html.panel.FeedbackPanel
-import org.apache.wicket.request.mapper.parameter.PageParameters
+import org.apache.wicket.model.CompoundPropertyModel
 
-class LoginPage(parameters: PageParameters) extends HeadBlankPage {
+class LoginPage extends HeadBlankPage {
 
   add(new LoginForm("loginform"))
 
-  //TODO - Refactor
-  def this() {
-    this(null)
-  }
+  private class LoginForm(id: String) extends Form[LoginObject](id) {
 
-  private class LoginForm(id: String) extends Form(id) {
+    val loginObject = new LoginObject
 
-    private var username: String = _
-
-    private var password: String = _
-
-    val signInPage: SignInPage = new SignInPage
-
-//    setModel(new CompoundPropertyModel(this))
+    setModel(new CompoundPropertyModel(loginObject))
 
     add(new RequiredTextField("username"))
 
@@ -31,16 +22,20 @@ class LoginPage(parameters: PageParameters) extends HeadBlankPage {
 
     add(new FeedbackPanel("feedback"))
 
-//    add(new Button("register") { override def onSubmit() { setResponsePage(signInPage) }})
     add(new BookmarkablePageLink[SignInPage]("register", classOf[SignInPage]))
 
-    protected override def onSubmit() {
+    override def onSubmit() {
       val session = ScalaBaseProjectSession.getSession()
-      if (session.signIn(username, password)) {
+      if (session.signIn(loginObject.username, loginObject.password)) {
         LoginForm.this.setResponsePage(classOf[HomePage])
       } else {
-        error(getString("login.failed"))
+        error(getString("login_failed"))
       }
     }
   }
+}
+
+class LoginObject {
+  var username: String = _
+  var password: String = _
 }

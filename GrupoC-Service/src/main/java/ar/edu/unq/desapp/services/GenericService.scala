@@ -8,7 +8,7 @@ class GenericService[T] extends Serializable {
 
   @BeanProperty
   var repository: GenericRepository[T] = _
-  
+
   @Transactional
   def save(obj: T) {
     this.repository.save(obj)

@@ -2,6 +2,8 @@ package ar.edu.unq.desapp.model.bean
 
 import javax.persistence._
 
+import org.hibernate.annotations.IndexColumn
+
 import scala.beans.BeanProperty
 import scala.collection.JavaConversions._
 
@@ -17,10 +19,12 @@ class User (
   var password: String) {
  
   @Id @GeneratedValue
+  @Column(name = "id")
   var id: Int = _
 
   @BeanProperty
-  @ElementCollection
+  @ElementCollection(fetch = FetchType.EAGER)
+  @IndexColumn(name = "id")
   var rols: java.util.List[String] = _
   
   @BeanProperty
@@ -40,5 +44,11 @@ class User (
 
   def commentBook(aBook: Book, aComment: String) {
     aBook.addComment(this, aComment)
+  }
+
+  def addRole(rols: String*) {
+    for (rol <- rols) {
+      this.rols.add(rol)
+    }
   }
 }

@@ -2,24 +2,20 @@
 
  import ar.edu.unq.desapp.appModel.AddEditBook
  import ar.edu.unq.desapp.model.bean.Book
- import ar.edu.unq.desapp.services.GeneralService
  import ar.edu.unq.desapp.view.tabs.BookListPage
  import org.apache.wicket.markup.html.WebPage
  import org.apache.wicket.markup.html.basic.Label
  import org.apache.wicket.markup.html.form.{Button, Form, TextArea, TextField}
  import org.apache.wicket.markup.html.panel.FeedbackPanel
  import org.apache.wicket.model.CompoundPropertyModel
- import org.apache.wicket.spring.injection.annot.SpringBean
-
-import scala.beans.BeanProperty
 
  class AddEditBookPage(book: Book) extends BasePage {
 
   // Parameter-less constructor
   def this() = this(null)
 	
-  @BeanProperty @SpringBean(name = "services.general")
-  var generalService: GeneralService = _
+//  @BeanProperty @SpringBean(name = "services.general")
+//  var generalService: GeneralService = _
   var addEditBook: AddEditBook = new AddEditBook(generalService)
 
   val mainPage: WebPage = new HomePage
